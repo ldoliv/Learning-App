@@ -1,0 +1,1 @@
+export {ToggleSimple as default} from './ToggleSimple';

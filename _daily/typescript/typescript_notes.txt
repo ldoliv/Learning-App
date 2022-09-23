@@ -1,0 +1,168 @@
+
+
+Using Types
+---------------------------------------
+
+Can be of primitve values: lowercase "string", "number", "boolean", "undefined", "null"
+Can be an array: string[], number[] or even Array<number> using generics
+Can also be "any" when wanting to avoid errors or checks
+
+Type annotations are always on the right side after a colon
+
+: string
+: number
+
+const variable_name: [type] = something
+
+
+
+Optional properties
+-------------------
+
+interface Person {
+  name: string,
+  height?: number       <- optional
+}
+
+
+
+
+Composing Types
+---------------------------------------
+
+
+Using Union
+-------------------
+
+Can be literal types, meaning types with a fixed value.
+Can be a string, number or boolean
+
+type WindowStates = "open" | "closed" | "minimized";
+
+Can also describe the types of values used:
+
+type WindowStates = string | string[]
+
+
+Using Generics
+-------------------
+
+They describe the values of structures.
+
+
+
+
+"interface" vs "type" keyword differences
+---------------------------------------
+
+-> Prefer "interface" over "type". Use type alias when you need specific features.
+
+  Alias types "type" keyword
+    Pros:
+      -> Union types
+      -> Create alias names for types
+
+    Cons:
+      -> Cant extend an alias type that has already been declared
+      -> A class cannot implement a type that is composed by a union of types.
+
+
+  "interface" keyword
+    Pros:
+      -> Better error messages.
+      -> Can extend an interface by declaring it multiple times.
+
+    Cons:
+      -> Cant' use union
+      -> Can't use aliases
+
+
+type BirdType = {
+  wings: 2;
+};
+
+interface BirdInterface {
+  wings: 2;
+}
+
+
+-> there's the situation of extending an already declared type or interface
+
+Declaration merging
+-------------------
+
+Valid, get's compounded ✅:
+---------
+
+interface Window {
+  title: string
+}
+
+interface Window {
+  ts: TypeScriptAPI
+}
+
+
+Invalid   ❌:
+---------
+
+Invalid for type aliases
+
+type Window = {
+  title: string
+}
+
+type Window = {
+  ts: TypeScriptAPI
+}
+
+ // Error: Duplicate identifier 'Window'.
+
+
+ -> With the type alias you are allowed to create alias names for types
+
+type EvenNumber = number           ✅ 
+
+// This isn't feasible with interfaces
+interface X extends string {      ❌
+
+}
+
+
+
+Extending
+---------------------------------------
+
+- Extend a type alias with "&"
+- Extend an interface with "extends" keyword
+
+-> It's possible for a type to extend an interface and an interface to extend a type.
+
+
+type Owl = { nocturnal: true } & BirdType;
+
+interface Peacock extends BirdType {
+  colourful: true;
+  flies: false;
+}
+
+
+
+Type assertion
+---------------------------------------
+
+"as"
+
+
+
+
+Narrowing
+---------------------------------------
+
+use logical branches with type guards to narrow down the type of the variable
+
+examples of type guards:
+  - typeof
+  - instanceOf
+  - "in"
+

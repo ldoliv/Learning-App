@@ -1,0 +1,34 @@
+
+
+1. create 2 spec files:
+
+"presentation.spec.ts"
+"filter-list.spec.ts"
+
+
+
+Create presentation
+
+1. Click "+" button
+
+2. Click submit button
+2. Click submit form by getting the form
+
+3. Fill in the form filelds to provoke erros in filling, ex: numbers in name field
+	3.1 submit form
+	3.2 verify if after field
+
+3. Create an array of testIds and verify that they are filled in
+
+
+
+
+
+To Report:
+
+Checkbox field "Presentation based on" should indicate that it is required.
+
+
+Required fields should scroll into view.
+After clicking on "customer" checkbox and selecting a customer, in the current viewport there are no visible required fields,
+only after clicking "Create Presentation" button is the user aware that there are still fields to be filled in.

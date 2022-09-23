@@ -1,0 +1,1 @@
+export {TestErrorBoundary as default} from './ErrorBoundary';

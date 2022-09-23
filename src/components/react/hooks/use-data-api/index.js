@@ -1,0 +1,1 @@
+export {useDataApi as default} from './UseDataApi';

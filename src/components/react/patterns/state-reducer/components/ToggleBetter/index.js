@@ -1,0 +1,1 @@
+export {ToggleBetter as default} from './ToggleBetter';

@@ -1,0 +1,14 @@
+
+
+
+Scrum Agile methodologies
+
+Unit testing. Jest/Jasmine
+
+Typescript
+
+Git
+
+flux/Redux
+
+Immutable.js

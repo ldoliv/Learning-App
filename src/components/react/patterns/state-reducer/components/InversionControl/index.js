@@ -1,0 +1,1 @@
+export {InversionControl as default} from './InversionControl';

@@ -1,0 +1,1 @@
+export {Memoization as default} from './Memoization';

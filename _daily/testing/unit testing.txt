@@ -1,0 +1,63 @@
+
+
+Create react app, uses Jest for testing
+
+Declare your test with a description an pass a callback function for validating your test
+
+Functions from Jest:
+	- describe
+	- it / test
+	- expect
+
+
+------------------------------------------
+
+import sum from './sum';
+
+it('sums numbers', () => {
+  expect(sum(1, 2)).toEqual(3);
+  expect(sum(2, 2)).toEqual(4);
+});
+
+
+------------------------------------------
+
+Run the command, for getting an overall overview of the test coverage in your app:
+
+npm test -- --coverage
+
+
+------------------------------------------
+
+React Testing library
+
+This library encourages your applications to be more accessible and allows you to get your tests closer to using your components the way a user would, which allows your tests to give you more confidence that your application will work when a real user uses it.
+
+It is built on top of DOM Testing Library.
+
+It does not replace Jest, it works with Jest.
+
+This library is for writing tests that mimick or come close to how the user would interact with the application.
+
+Functions / methods:
+	- render
+	- screen
+	screen.debug()
+	screen.getByTestId()		<== with attribute data-testid="..."
+	
+	expect(id).toHaveTextContent('click me please');
+
+
+------------------------------------------
+
+For end to end tests, install cypress
+
+yarn add -D cypress @testing-library/cypress
+yarn run cypress open
+
+------------------------------------------
+
+Examples
+
+const id = screen.getByTestId('button');		// <== with attribute data-testid="button"
+expect(id).toHaveTextContent('click me please');

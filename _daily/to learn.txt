@@ -1,0 +1,10 @@
+
+
+TS with react components
+
+	- Build projects
+
+	- Kent C Dodds
+		- React
+		- Testing
+

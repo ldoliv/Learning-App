@@ -1,0 +1,1 @@
+export {ModalV2 as default} from './Modal';

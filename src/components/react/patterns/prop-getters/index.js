@@ -1,0 +1,1 @@
+export {PropGetters as default} from './PropGetters';

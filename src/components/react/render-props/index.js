@@ -1,0 +1,1 @@
+export {RenderProps as default} from './RenderProps';
