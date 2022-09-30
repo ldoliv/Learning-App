@@ -45,7 +45,7 @@ export default function Learning() {
 	
 	// Don't want it to always get dropdown values on every render, so useMemo
    const allTags = useMemo(() => {
-      console.log("dropdownOptions called");
+      // console.log("dropdownOptions called");
       return getTags(questions);
    }, []);
 
@@ -64,14 +64,14 @@ export default function Learning() {
 		const {index, question, showAnswer, progress} = picked;
 
 		if (question !== null) {
-			console.log(question);
+			// console.log(question);
          const { quest, answ } = question;
          const { desc, code, url } = answ;
 
          return (
 				<>
                <div className="text-center">{index}/{filtQuestions.length} {progress}%</div>
-               <h2 className="title mb-4">{quest}</h2>
+               <h2 className="title my-4">{quest}</h2>
                {showAnswer && (
                   <div className="answer">
                      {desc && <div className="desc">{desc}</div>}
@@ -118,7 +118,7 @@ export default function Learning() {
                <div className="col-auto">
                   <div className="btns" style={{ width: "70px" }}>
                      <button className="btn btn-outline-secondary btn-sm w-100 mb-2" onClick={handlePick}>Pick</button>
-                     <button className="btn btn-outline-secondary btn-sm w-100" onClick={handleShowAnswer}>Answer</button>
+                     <button className={`btn btn-outline-secondary btn-sm w-100 ${picked.showAnswer ? 'disabled' : ''}`} onClick={handleShowAnswer}>Answer</button>
                   </div>
                </div>
             </div>

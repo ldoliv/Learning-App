@@ -1,0 +1,1 @@
+export {W3Resource as default} from './W3Resource';

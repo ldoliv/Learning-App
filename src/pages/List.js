@@ -68,11 +68,12 @@ export function List({routes}) {
 									{route.desc && <div className="list-desc" dangerouslySetInnerHTML={{__html: descHtml}} />}
 									{route.output && <div className="list-output">{route.output}</div>}
 									<ul>
-										{route.routes?.map((childRoute, index) => {
+										{route.routes?.slice(0, 100).map((childRoute, index) => {
 											// console.log(childRoute);
 											const childLabelHtml = ReactDOMServer.renderToString(childRoute.label);
 											return <li key={index} dangerouslySetInnerHTML={{__html: childLabelHtml}}></li>
 										})}
+										{route.routes?.length > 100 ? <li>...</li> : null}
 									</ul>
 									{route.tags.length > 0 && <div className="list-tags mb-3">Tags: {route.tags.join(', ')}</div>}
 									<NavLink to={route.path}>Solution</NavLink>

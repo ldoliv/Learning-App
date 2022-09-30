@@ -254,5 +254,32 @@ export const reactRoutes = {
 			componentPath: 'performance',
 			tags: ['React']
 		},
+		{
+			desc: <>
+				Experiments
+			</>,
+			output: '',
+			path: 'experiments',
+			componentPath: 'experiments/Experiments',
+			tags: ['React']
+		},
+		{
+			desc: <>
+				Challenges
+			</>,
+			output: '',
+			path: 'challenges',
+			componentPath: 'challenges',
+			tags: ['React']
+		},
+				{
+			desc: <>
+				React Context
+			</>,
+			output: '',
+			path: 'contexts',
+			componentPath: 'contexts',
+			tags: ['React', 'Context']
+		},
 	]
 }

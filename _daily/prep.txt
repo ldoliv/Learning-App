@@ -1,0 +1,19 @@
+
+What is jsx ?
+Jsx is a xml like syntax extension to ECMAScript, it's syntatical sugar for the React.createElement() function,
+it allows writing JavaScript along with HTML like template syntax.
+
+
+function currying
+
+react create element
+
+
+
+
+
+class component and methods
+
+todo app
+
+https://www.youtube.com/watch?v=w7ejDZ8SWv8

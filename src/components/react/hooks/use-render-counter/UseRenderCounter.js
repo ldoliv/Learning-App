@@ -2,10 +2,13 @@ import React from 'react';
 
 
 export function useRenderCounter() {
+  
   const ref = React.useRef()
+
   React.useEffect(() => {
     ref.current.textContent = Number(ref.current.textContent || '0') + 1
   })
+  
   return (
     <span
       style={{

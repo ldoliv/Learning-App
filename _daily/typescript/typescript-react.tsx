@@ -69,6 +69,7 @@ declare interface AppProps2 {
 	style?: React.CSSProperties; // to pass through style props
 
 	onChange?: React.FormEventHandler<HTMLInputElement>; // form events! the generic parameter is the type of event.target
+	onClick: React.MouseEventHandler<HTMLButtonElement>;
 
 	/** alternative function type syntax that takes an event (VERY COMMON) */
 	onClick(event: React.MouseEvent<HTMLButtonElement>): void;
@@ -128,11 +129,11 @@ type IProps3 = (props: {
 	children: React.ReactNode
 }) => JSX.Element
 
-function App4 ({ children }: {children: React.ReactNode}): JSX.Element {
+function App4 ({ children }): IProps3 {
 	return <div>{children}</div>;
 };
 
-const App5 = ({children}): IProps3 => <div>{children}</div>
+const App5: IProps3 = ({children}) => <div>{children}</div>
 
 
 

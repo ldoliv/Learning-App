@@ -1,0 +1,1 @@
+export {Codility as default} from './Codility';

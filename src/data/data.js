@@ -137,7 +137,18 @@ const indent = options.getIndent?.()
 		quest: "<QtyInput onChange={(qty) => handleQtyChange(qty, index)} />",
 		answ: {
 			desc: "onChange receives whatever QtyInput passes it. 'index' is external",
-			code: "",
+			code: <>{`
+			
+// Another way of writing it would be.
+
+function handleQtyChange(index) {
+	return (qty) => {
+		...
+	}
+}
+
+<QtyInput onChange={handleQtyChange(index)} />
+			`}</>,
 			url: "",
 		},
 		tags: ["React"],
@@ -217,6 +228,8 @@ const sumWithInitial = array1.reduce((prevAcum, currVal) => prevAcum + currVal, 
 					</p>
 					<p>Use useCallback for saving a reference to the function to be called at a later time.</p>
 					<p>Use useMemo for expensive calculations, the function runs once and its result is saved for later use.</p>
+					<p>&nbsp;</p>
+					<p>The reason for using these functions is so that it prevents running the functions each time the component rerenders as well as they provide a stable value or function reference that can be passed to child components as props, and with the use of React.memo on child components we prevent them from rerendering.</p>
 				</>
 			),
 			code: "",
@@ -229,7 +242,7 @@ const sumWithInitial = array1.reduce((prevAcum, currVal) => prevAcum + currVal, 
 		answ: {
 			desc: (
 				<>
-					<p>Essentially to stop extra processing for each render.</p>
+					<p>Essentially to stop extra processing on each render as well as preventing child component rerenders.</p>
 					<p>
 						For the case where you have a parent and child components, where the child receives a function as a prop, but we
 						don't want the child to rerender everytime, we can use <b>React.memo</b> on the child component, but this still won't
@@ -324,9 +337,7 @@ function DualCounter() {
 			desc: (
 				<>
 					<p>
-						Pure Components in React are components which do not re-render when the value of state and props has been updated
-						with the same values. They make use of memoization, caching the result, doing a shallow comparison of state and
-						props.
+						Pure Components in React are components which do not re-render when the value of state and props has been updated with the same values. They do a shallow comparison of state and props.
 					</p>
 					<p>
 						For class components, you can extend from <b>React.PureCompontent</b>. <br />
@@ -704,27 +715,27 @@ console.log(boundGetX());     // 42
 			code: <>{`
 const MyInput = React.forwardRef(function MyInput(props, ref) {
   
-  const inputRef = React.useRef()	// <- ref that is connected to teh input
+  const inputRef = React.useRef()	// <- ref that is connected to the input
 
   React.useImperativeHandle(ref, () => {	// <- add methods to the ref that was passed to the component
-    return {
-      focusInput: () => inputRef.current.focus(),
-    }
+	 return {
+		focusInput: () => inputRef.current.focus(),
+	 }
   })
   return <input ref={inputRef} />
 })
 
 
 /*
-	❌ Don't do this!
-	This actually works, however there are some edge case bugs with this approach when applied in React's future concurrent mode/suspense feature (also it doesn't support callback refs). So instead, use the useImperativeHandle hook!
+❌ Don't do this!
+This actually works, however there are some edge case bugs with this approach when applied in React's future concurrent mode/suspense feature (also it doesn't support callback refs). So instead, use the useImperativeHandle hook!
 */
 const MyInput = React.forwardRef(function MyInput(props, ref) {
 
   const inputRef = React.useRef()
 
   ref.current = {
-    focusInput: () => inputRef.current.focus(),
+	 focusInput: () => inputRef.current.focus(),
   }
   return <input ref={inputRef} />
 })
@@ -936,7 +947,7 @@ console.log(sum(1, 2, 3, 4));
 		tags: ["Javascript"],
 	},
 	{
-		quest: "Hooks",
+		quest: "What can you do with Hooks?",
 		answ: {
 			desc: (
 				<>
@@ -1101,12 +1112,13 @@ logNow("INFO", "message"); // [HH:mm] INFO message
 						Component elements can be obtained by the methods provided by <b>screen</b>:
 					</p>
 					<ul>
-						<li>By Text</li>
-						<li>By Label Text</li>
-						<li>By Role</li>
-						<li>By Alt Text</li>
-						<li>By Placeholder Text</li>
-						<li>By Display Value</li>
+						<li>Method prefix: (get|query|find)</li>
+						<li>ByText</li>
+						<li>ByLabelText</li>
+						<li>ByRole</li>
+						<li>ByAltText</li>
+						<li>ByPlaceholderText</li>
+						<li>ByDisplayValue</li>
 					</ul>
 				</>
 			),
@@ -1173,12 +1185,10 @@ expect(getByText(/Click me/i).closest('button')).not.toBeDisabled();
 		answ: {
 			desc: (
 				<>
+					<p>In unit testing, if real objects are impractical to incorporate into the test, we "mock" creating objects that simulate the behavior of real objects.</p>
 					<p>
-						Mocking is primarily used in unit testing. An object under test may have dependencies on other (complex) objects. To
-						isolate the behavior of the object you want to replace the other objects by mocks that simulate the behavior of the
-						real objects. This is useful if the real objects are impractical to incorporate into the unit test.
+						An object under test may have dependencies on other (complex) objects. To isolate and test the behavior of the object, you replace the other objects with mocks that simulate the behavior of the real objects.
 					</p>
-					<p>In short, mocking is creating objects that simulate the behavior of real objects.</p>
 				</>
 			),
 			code: null,
@@ -1241,7 +1251,7 @@ return (
 			desc: (
 				<>
 					<p>
-						By default, the value of this inside a function depends on how the function was called. In this example, because the function was called through the obj reference, its value of this was obj rather than the class instance.
+						By default, the value of this inside a function depends on how the function was created / assigned. In this example, because the function was called through the obj reference, its value of this was obj rather than the class instance.
 					</p>
 				</>
 			),
@@ -1582,7 +1592,7 @@ type ValidatedResult = NonNullable<StickerLookupResult>;
 		quest: "ReturnType<Type>",
 		answ: {
 			desc: <>
-				<p>Extracts the return value from a Type.</p>
+				<p>Gets the return type of a function.</p>
 			</>,
 			code: <>{`
 declare function getStickerByID(id: number): Promise<StickerLookupResult>;
@@ -1648,7 +1658,7 @@ const otherString = someString.toUpperCase(); // "HELLO WORLD"
 		quest: "How to check whether a string contains a substring in JavaScript?",
 		answ: {
 			desc: <>
-				<p>Use .includes() or .indexOf()</p>
+				<p>Use .includes() or .indexOf() > 0</p>
 			</>,
 			code: null,
 			url: "",
@@ -1670,7 +1680,7 @@ const otherString = someString.toUpperCase(); // "HELLO WORLD"
 		quest: "What are the types of patterns that are used in React applications?",
 		answ: {
 			desc: <>
-				<p>Context Module Pattern - Consists of making a function that gets passed the dispatcher as well as any other parameters, this function will live in the same file as the context Provider "UserProvider" and consumer custom Hook "useUser" and also be exported.</p>
+				<p>Context Module Functions Pattern - Allows you to encapsulate a complex set of state changes into a utility function which can be tree-shaken and lazily loaded.</p>
 				<p>Compound Components Pattern - Enables you to provide a set of components that implicitly share state for a simple yet powerful declarative API for reusable components, they are components that work together to form a complete UI.</p>
 				<p>The Prop Collections and Getters Pattern - Allows your hook to support common use cases for UI elements people build with your hook. <br />Basically your component provides a props object that people can simply spread across the UI they render.</p>
 				<p>State Reducer Pattern - The State Reducer Pattern inverts control over the state management of your hook and/or component to the developer using it so they can control the state changes that happen when dispatching events.</p>
@@ -1680,8 +1690,11 @@ const otherString = someString.toUpperCase(); // "HELLO WORLD"
 /*
 Context Module
 
-So the context consumer "useUser" gets the state as well as the dispatcher, the dispatcher is then passed to this function.
-This pattern is usefull if it's required to call the dispatcher in a certain order, you will want the consumer to not worry about getting this right.
+Essentially it's building a function that will get passed the dispatcher, for it to use the dispatcher how it pleases, without you having to worry about in what way to invoke the dispatcher.
+
+updateUser() is exported as well as the context provider and consumer.
+To use, the dispatch function received from useUser is passed to updateUser along any other arguments.
+The updateUser() function handles the dispatching of the correct actions and execution order.
 */
 
 async function updateUser(dispatch, user, updates) {
@@ -1689,15 +1702,17 @@ async function updateUser(dispatch, user, updates) {
   dispatch({type: 'start update', updates})
 
   try {
-    const updatedUser = await userClient.updateUser(user, updates);
-    dispatch({type: 'finish update', updatedUser})
-    return updatedUser
+	 const updatedUser = await userClient.updateUser(user, updates);
+	 dispatch({type: 'finish update', updatedUser})
+	 return updatedUser
 
   } catch (error) {
-    dispatch({type: 'fail update', error})
-    throw error
+	 dispatch({type: 'fail update', error})
+	 throw error
   }
 }
+
+// export {UserProvider, useUser, updateUser}
 
 // ------------------------------------------------------
 
@@ -1710,19 +1725,19 @@ If passing props down to children at any depth use context.
 
 function Foo({children}) {
   return React.Children.map(children, (child, index) => {
-    return React.cloneElement(child, {
-      id: \`i-am-child-\${index}\`,
-    })
+	 return React.cloneElement(child, {
+		id: \`i-am-child-\${index}\`,
+	 })
   })
 }
 
 function Bar() {
   return (
-    <Foo>
-      <div>I will have id "i-am-child-0"</div>
-      <div>I will have id "i-am-child-1"</div>
-      <div>I will have id "i-am-child-2"</div>
-    </Foo>
+	 <Foo>
+		<div>I will have id "i-am-child-0"</div>
+		<div>I will have id "i-am-child-1"</div>
+		<div>I will have id "i-am-child-2"</div>
+	 </Foo>
   )
 }
 
@@ -1744,13 +1759,13 @@ function App() {
   const {on, togglerProps} = useToggle()
 
   return (
-    <div>
-      <Switch on={on} {...togglerProps} />
-      <hr />
-      <button aria-label="custom-button" {...togglerProps}>
-        {on ? 'on' : 'off'}
-      </button>
-    </div>
+	 <div>
+		<Switch on={on} {...togglerProps} />
+		<hr />
+		<button aria-label="custom-button" {...togglerProps}>
+		  {on ? 'on' : 'off'}
+		</button>
+	 </div>
   )
 }
 
@@ -1798,8 +1813,25 @@ function App() {
 		},
 		tags: [""],
 	},
-];
+	{
+		quest: "React.createElement",
+		answ: {
+			desc: <>
+				<p></p>
+			</>,
+			code: <>{`
+React.createElement(type, [props], [...children])
 
+const container = React.createElement('div', {className: 'container'}, 
+	React.createElement('h1', {}, 'My First React Code'),
+	React.createElement('p', {}, 'Writing some more HTML. Cool stuff!')
+);
+			`}</>,
+			url: "",
+		},
+		tags: ["React", "Terminology"],
+	},
+];
 
 /*
 	{

@@ -1,7 +1,6 @@
 import React, {lazy, Suspense} from 'react';
 
 import {javascriptRoutes} from './javascriptRoutes';
-import {w3resourceRoutes} from './w3resourceRoutes';
 import {reactRoutes} from './reactRoutes';
 
 
@@ -14,7 +13,6 @@ const Learning = lazy(() => import(`pages/learning/LearningPage`));
 
 const mainRouteObjs = [
 	javascriptRoutes,
-	w3resourceRoutes,
 	reactRoutes
 ];
 
