@@ -42,24 +42,26 @@ function getMissing_v2(A: number[]) {
 	let expected = values[0];
 
 	for (let i = 0; i < values.length; i++) {
+
+		const current = values[i];
 		
-		console.log(expected, values[i], expected < values[i]);
+		console.log(expected, current, expected < current);
 
 		// if expected is smaller than the next value, means that it's the one that's missing
-		if (expected < values[i]) {
+		if (current > expected) {
 			return expected
 		}
-		expected = values[i] + 1
+		expected = current + 1
 	}
 
 	return expected
 }
 
 /*
-	2 < 2 false
-	3 < 3 false
-	4 < 4 false
-	5 < 6 true <-
+	2 > 2  false
+	3 > 3  false
+	4 > 4  false
+	6 > 5  true <-
 */
 
 

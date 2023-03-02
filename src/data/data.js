@@ -1831,6 +1831,17 @@ const container = React.createElement('div', {className: 'container'},
 		},
 		tags: ["React", "Terminology"],
 	},
+	{
+		quest: "What is JSX?",
+		answ: {
+			desc: <>
+				<p>Jsx is a xml like syntax extension to ECMAScript, it's syntatical sugar for the React.createElement() function, it allows writing JavaScript along with HTML like template syntax.</p>
+			</>,
+			code: <>{``}</>,
+			url: "",
+		},
+		tags: ["React", "Terminology"],
+	},
 ];
 
 /*
@@ -1846,7 +1857,6 @@ const container = React.createElement('div', {className: 'container'},
 		tags: [""],
 	},
 */
-
 
 // console.log(questions);
 
