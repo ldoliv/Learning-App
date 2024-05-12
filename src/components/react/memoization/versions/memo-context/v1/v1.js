@@ -21,7 +21,7 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 
 
 function CountDisplay() {
-	const {count} = useCount()
+	const {count} = useCount()	// from the context
 	const renderCount = useRenderCounter()
 
 	return (
@@ -35,7 +35,7 @@ CountDisplay = React.memo(CountDisplay)
 
 
 function Counter() {
-	const {increment} = useCount()
+	const {increment} = useCount()	// from the context
 	const renderCount = useRenderCounter()
 
 	return (

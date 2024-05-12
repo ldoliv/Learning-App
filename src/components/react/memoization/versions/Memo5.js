@@ -11,8 +11,9 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 
    For preventing child rerendering when:
       - Passing functions as props use "useCallback".
-      - Passing Objects or Arrays use a test function as second paramter to the React.memo for comparing Objects or Arrays
-	
+      - Passing Objects or Arrays:
+         => One solution is to use a comparison function as the second argument to the React.memo HOC allowing to compare the properties of the object
+         => Another solution is to wrap the object or array with React.useMemo making the reference stable.
 */
 
 function Child ({name, person, updatePerson}) {
@@ -21,7 +22,7 @@ function Child ({name, person, updatePerson}) {
 
 
    function handleUpdate() {
-      updatePerson({name});
+      updatePerson({name: name});
    }
 
    return (
@@ -32,11 +33,9 @@ function Child ({name, person, updatePerson}) {
          </div>
       </div>
    );
-// });
-   
-// This handles the person object only rendering if the name changes
-// return true to not rerender
 };
+   
+// This handles the person object only rendering if the name changes. Return true to not rerender
 // eslint-disable-next-line no-func-assign
 Child = React.memo(Child, (prevProps, currProps) => {
    return prevProps.person.name === currProps.person.name;
@@ -46,35 +45,26 @@ export default function Memo5(props) {
 
    // console.log('Memo5 rendered');
 
-   const [person1, setPerson1] = React.useState({ name: "" });
-   const [person2, setPerson2] = React.useState({ name: "" });
+   const [person, setPerson] = React.useState({ name: "" });
 
-   
-   const updatePerson1 = React.useCallback((person) => {
-      console.log("updatePerson1 useCallback called");
-      setPerson1(person);
-   }, []);
-
-   const updatePerson2 = React.useCallback((person) => {
-      console.log("updatePerson2 useCallback called");
-      setPerson2(person);
-   }, []);
-
-   
    function handleUpdate() {
-      updatePerson1({ name: "Parent" });
+      setPerson({ name: "Parent" });
    }
 
+   // memoized
+   const memoSetPerson = React.useCallback((person) => {
+      console.log("updatePerson1 useCallback called");
+      setPerson(person);
+   }, []);
 
    return (
       <div>
 
          <div className="mb-4">
-            <button onClick={handleUpdate}>Update child 1 from Parent</button>
+            <button onClick={handleUpdate}>Update child from Parent</button>
          </div>
 
-         <Child name="child1" person={person1} updatePerson={updatePerson1} />
-         <Child name="child2" person={person2} updatePerson={updatePerson2} />
+         <Child name="child" person={person} updatePerson={memoSetPerson} />
 
       </div>
    );

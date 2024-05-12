@@ -2,7 +2,7 @@ import {useState} from "react"
 import LoadingService from '../services/LoadingService';
 
 
-const data = ['A', 'B', 'C']
+const newData = ['A', 'B', 'C']
 
 export default function GetData() {
 
@@ -10,20 +10,20 @@ export default function GetData() {
 
 	function getData() {
 
-		LoadingService.show();
+		LoadingService.show();		// Trigger state change for "Loader"
 
 		setTimeout(() => {
-			LoadingService.hide();
+			LoadingService.hide();	// Trigger state change for "Loader"
 
-			setData(data);
+			setData(newData);
 		}, 2000)
 	}
 
 	return (
 		<>
-			<div>
-				{data.map(item => <div>{item}</div>)}
-			</div>
+			<ul>
+				{data.map((item, idx) => <li key={idx}>{item}</li>)}
+			</ul>
 			<div>
 				<button onClick={getData}>Get data</button>
 			</div>

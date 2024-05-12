@@ -1,18 +1,8 @@
 import React from 'react';
 
 
-class RenderPropFunc extends React.Component {
-
+class RenderProp1 extends React.Component {
 	render() {
-
-		// handling a funciton
-
-		// return (
-		// 	<div>
-		// 		{this.props.render('value passed to render prop function')}
-		// 	</div>
-		// );
-
 		// handling a component
 		return (
 			<div>
@@ -22,9 +12,20 @@ class RenderPropFunc extends React.Component {
 	}
 }
 
-class RenderChildPropFunc extends React.Component {
-
+class RenderProp2 extends React.Component {
 	render() {
+		// handling a function
+		return (
+			<div>
+				{this.props.render('value passed to render prop function')}
+			</div>
+		);
+	}
+}
+
+class RenderProp3 extends React.Component {
+	render() {
+		// children as a function
 		return (
 			<div>
 				{this.props.children('value passed to children prop function')}
@@ -33,7 +34,8 @@ class RenderChildPropFunc extends React.Component {
 	}
 }
 
-export class RenderProps extends React.Component {
+
+export default class RenderProps extends React.Component {
 
 	constructor (props) {
 		super(props);
@@ -43,21 +45,22 @@ export class RenderProps extends React.Component {
 	render() {
 		return (
 			<>
-				{/* passing a function */}
-				{/* <RenderPropFunc render={value => {
-					return <div>{value}</div>
-				}} /> */}
-
 				{/* passing a component */}
-				<RenderPropFunc render={({value}) => {
+				<RenderProp1 render={({value}) => {
 					return <div>{value}</div>
 				}} />
 
-				<RenderChildPropFunc>
+				{/* passing a function */}
+				<RenderProp2 render={value => {
+					return <div>{value}</div>
+				}} />
+
+				{/* children as a function */}
+				<RenderProp3>
 					{value => {
 						return <div>{value}</div>
 					}}
-				</RenderChildPropFunc>
+				</RenderProp3>
 			</>
 		)
 	}

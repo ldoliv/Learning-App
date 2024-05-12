@@ -96,15 +96,20 @@ function useDisplayComponent(opts) {
 
 
 
-export function ModalV2({isOpen, title, content, className = 'info', parentSelector, ignoreOverlayClick, onClose, styles}) {
+export function ModalV2({isOpen, title, content, className = 'info', parentSelector, ignoreOverlayClick, onClose, delayAfterRender, delayBeforeRemove}) {
 
 	const modalId = 'cs-modal';
 
 	const [render, visible] = useDisplayComponent(() => ({
 		show: isOpen,
-		// delayAfterRender: 100,
-		delayBeforeRemove: parseInt(styles.transitionDuration) * 2
+		delayAfterRender: delayAfterRender ? delayAfterRender : 100,
+		delayBeforeRemove: delayBeforeRemove ? delayBeforeRemove : 500
 	}));
+	// const [render, visible] = useDisplayComponent({
+	// 	show: isOpen,
+	// 	delayAfterRender: delayAfterRender ? delayAfterRender : 100,
+	// 	delayBeforeRemove: delayBeforeRemove ? delayBeforeRemove : 500
+	// });
 
 	
 	function handleCloseOverlay() {
@@ -117,7 +122,7 @@ export function ModalV2({isOpen, title, content, className = 'info', parentSelec
 	if (!render) return null;
 	
 	const modal = (
-		<div id={modalId} className={`cs-modal ${className} ${visible ? 'opened' : ''}`} style={styles}>
+		<div id={modalId} className={`cs-modal ${className} ${visible ? 'opened' : ''}`} >
 			<div className="overlay" onClick={handleCloseOverlay}></div>
 			<div className="cs-modal-outer">
 				<div className="cs-modal-close" onClick={() => onClose()}></div>

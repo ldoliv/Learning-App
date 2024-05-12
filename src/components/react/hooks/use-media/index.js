@@ -12,7 +12,12 @@ function Box() {
 }
 
 function TestUseMedia() {
-  return <Box />
+  return (
+    <>
+      <div className='mb-3'>Resize window</div>
+      <Box />
+    </>
+  )
 }
 
 export default TestUseMedia

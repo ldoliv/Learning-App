@@ -7,10 +7,13 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 */
 
 /*
-	Wraped Child with React.memo doing a shallow comparison of props, good for primitive values.
-	Works if primitive values are passed as props, or values like object references that do not change
-	
-   => The child component only rerenders when prop values change.
+   - Passing primitive values to the Child component
+
+   Using React.memo, does a shallow comparison of props, the child component will only rerender if it's prop values change,
+   this compares primitive values passed in props.
+   Be aware that passing and object or function as a prop the reference must always be the same otherwise the componente will render.
+
+   => works fine for primitive values, for objects and functions more work is needed.
 */
 
 const Child = React.memo((props) => {

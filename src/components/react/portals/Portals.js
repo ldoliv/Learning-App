@@ -4,16 +4,16 @@ import ReactDOM, {createPortal} from "react-dom";
 
 
 
-function Modal() {
+function Modal(props) {
 	// The click event on this button will bubble up to parent,
 	// because there is no 'onClick' attribute defined
 	return (
 		<div className="modal d-flex justify-content-center align-items-center" style={{
 			height: '240px',
-			backgroundColor: '#efefef',
+			border: '1px solid #efefef',
 			top: '220px'
-		}}>
-			<button>Click</button>
+		}} onClick={(e) => props.onClick(e)}>
+			<div>Child component</div>
 		</div>
 	);
 }
@@ -58,35 +58,29 @@ const Portal = memo(({id, children}) => {
 	return createPortal(children, el.current);
 });
 
-
+const ids = ['first-location', 'second-location', 'third-location'];
 
 export class Portals extends React.Component {
 
 	constructor (props) {
 		super(props);
 		this.state = {
-			id: 'first-location',		// 1. Moves from here
+			id: 'first-location',
 			clicks: 0
 		};
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	componentDidMount() {
-		setTimeout(() => {
-			this.setState({id: 'second-location'})		// 2. To here
-		}, 3000)
 
-		setTimeout(() => {
-			this.setState({id: 'third-location'})		// 3. To here
-		}, 8000)
 	}
 
 	handleClick() {
-		// This will fire when the button in Child is clicked,
-		// updating Parent's state, even though button
+		// Updates the Parent's state, even though button
 		// is not a direct descendant in the DOM.
 		this.setState(state => ({
-			clicks: state.clicks + 1
+			clicks: state.clicks + 1,
+			id: ids[state.clicks % 3]
 		}));
 	}
 
@@ -96,14 +90,15 @@ export class Portals extends React.Component {
 
 		return (
 			<>
+				<div>location: {this.state.id}</div>
 				<div id="second-location"></div>
 
-				<div onClick={this.handleClick}>
+				<div>
 					<p>Number of clicks: {this.state.clicks}</p>
-					<p>Open up the browser DevTools to observe that the button is not a child of the div with the onClick handler.</p>
+					<p>Open the browser DevTools and observe that the Child(Modal) might not be a descendent of the Parent component in the dom. And still the parent component is able to capture the onClick event.</p>
 
 					<Portal id={this.state.id}>
-						<Modal />
+						<Modal onClick={this.handleClick} />
 					</Portal>
 				</div>
 			</>

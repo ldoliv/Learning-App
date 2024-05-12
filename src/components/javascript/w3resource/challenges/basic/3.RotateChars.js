@@ -20,7 +20,7 @@ export default function RotateWord() {
 
 
 	/*
-		Two ways to use useEffect, the first by using a normal setInterval, but we need to set it as a function, getting the current value  of 'word', otherwise it will always be the same.
+		Two ways to use useEffect, the first by using a normal setInterval, but we need to set it as a function, getting the current value of 'word', otherwise it will always be the same.
 	*/
 	useEffect(() => {
 

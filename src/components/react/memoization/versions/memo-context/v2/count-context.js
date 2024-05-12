@@ -14,14 +14,11 @@ function CountProvider({children, ...props}) {
 
 
 	// Use this to check that it's unstable
-	function customSetCount(fn) {
-		setCount(fn)
-	}
+	// function customSetCount(fn) {
+	// 	setCount(fn)
+	// }
 	// Uncomment to make it stable
-	// customSetCount = React.useCallback(customSetCount, []);
-
-	// Can also write it like this =>
-	// const customSetCount = React.useCallback((fn) => {
+	// const customSetCount = React.useCallback(fn => {
 	// 	setCount(fn)
 	// }, []);
 
@@ -48,18 +45,18 @@ function useCountState() {
 
 function useCountUpdater() {
 
-	const setCount = React.useContext(CountUpdaterContext)
+	const setCount = React.useContext(CountUpdaterContext)	// As long as the context value is stable the children wont rerender.
 	
 	if (typeof setCount === 'undefined') {
 		throw new Error('useCountUpdater must be used within a CountProvider')
 	}
 	
+	// No need to use this, in any of the cases
+	// const increment = React.useCallback(() => setCount(c => c + 1), [setCount])
 
-	const increment = React.useCallback(() => setCount((c) => c + 1), [setCount])
-
-	// const increment = () => {
-	// 	setCount(c => c + 1);
-	// }
+	const increment = () => {
+		setCount(c => c + 1);
+	}
 
 	return increment
 }

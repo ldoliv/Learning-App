@@ -24,19 +24,22 @@ function Mouse(props) {
 
 function DisplayMousePos(props) {
 	return (
-		<>
-			<h1>The mouse position is ({props.mouse.x}, {props.mouse.y})</h1>
+		<div style={{border: '1px solid white'}}>
+			<h1>The mouse position is ({props.pos.x}, {props.pos.y})</h1>
 			<div>Extra prop: {props.someProp}</div>
-		</>
+		</div>
 	);
 }
 
-// using class component
+// --------------------------------------------------------
+// Hocs =>
+
+// using a Class Component
 const withMouseHoc1 = (Component) => {
 	return class extends React.Component {
 		render() {
-			return <Mouse render={mouse => (
-				<Component {...this.props} mouse={mouse} />
+			return <Mouse render={pos => (
+				<Component {...this.props} pos={pos} />
 			)} />
 		}
 	}
@@ -51,8 +54,8 @@ const withMouseHoc2 = (Component) => {
 	return ({someProp, ...props}) => {	// props received from the component passed to withMouseHoc2
 		console.log(someProp);
 		return (
-			<Mouse render={mouse => (
-				<Component {...props} mouse={mouse} />
+			<Mouse render={pos => (
+				<Component {...props} pos={pos} />
 			)} />
 		);
 	}
@@ -63,8 +66,8 @@ const withMouseHoc2 = (Component) => {
 const withMouseHoc3 = (Component) => (props) => {
 	// console.log(props);
 	return (
-		<Mouse render={mouse => (
-			<Component {...props} mouse={mouse} />
+		<Mouse render={pos => (
+			<Component {...props} pos={pos} />
 		)} />
 	);
 }
@@ -76,7 +79,7 @@ const withMouseHoc3 = (Component) => (props) => {
 const WithMouse = withMouseHoc3(DisplayMousePos);
 
 
-export function Hocs() {
+export default function Hocs() {
 	return (
 		<WithMouse someProp={'some prop value'} />
 	);

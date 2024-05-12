@@ -6,15 +6,11 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 */
 
 /*
-	Wraped Child with React.memo doing a shallow comparison of props.
-	Passing Functions, Objects or arrays the child component will always rerender.
+   - Passing a function to the Child component
 
-   For preventing child rerendering when:
-      - Passing functions as props use "useCallback".
-      - Passing Objects or Arrays use a test function as second paramter to the React.memo for comparing Objects or Arrays
+   - Functions from useState are stable.
+   - Wrap the function in React.useCallback for a stable reference to the function.
 
-   1. Memo4 will always rerender which is normal because the state is changing
-   2. The focus here is on the Search component, that if the prop isn't stable it will also rerender.
 */
 
 
@@ -40,10 +36,15 @@ export default function Memo4(props) {
 
    console.log("Memo4 rendered");
 
+   const [, forceUpdate] = React.useState();
    const [query, setSearch] = React.useState("");
 
 
-	const handleSearch = (query) => {
+	// const handleSearch = (query) => {
+   //    setSearch(query);
+   // };
+
+   function handleSearch(query) {
       setSearch(query);
    };
 
@@ -62,6 +63,8 @@ export default function Memo4(props) {
          <Search setSearch={handleSearchMemoized} />
 
          <div>Searching: {query}</div>
+         <button onClick={() => forceUpdate({})}>Force update</button>
+
       </div>
    );
 }

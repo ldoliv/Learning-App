@@ -9,7 +9,7 @@ export default function TestUseMounted() {
 
 	function simRequest() {
 		setTimeout(() => {
-			// console.log(mountedRef);
+			console.log(mountedRef);
 
 			if (mountedRef.current) {
 				setState('new state');
@@ -19,6 +19,7 @@ export default function TestUseMounted() {
 
 	return (
 		<div>
+			<div className="mb-3">Click the button and then click back, check the console</div>
 			<button onClick={simRequest}>Simulate Request</button>
 			<div>State: {state}</div>
 		</div>

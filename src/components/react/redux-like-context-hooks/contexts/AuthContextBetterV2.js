@@ -10,11 +10,18 @@ import {getUser, saveUser, removeUser} from '../components/store';
 	Dispatch -> action -> reducer
 	Dispatch, dispatches a action function, the reducer receives the current state and the action object and sets the new state.
 
-	dispatch(authActions.loginSuccess(user));
+	dispatch( authActions.loginSuccess(user) );
+
 	Dispatch -> action(payload) -> {type, payload} -> reducer(state, {type, payload})
 
 	Dispatch -> Action : authActions.loginSuccess(user)  				->  Reducer (state, {type, payload})
-								 {type: 'loginSuccess', payload: user}		      {isLoggedIn: true, user: payload, error: null}
+								{type: 'loginSuccess', payload: user}		    {isLoggedIn: true, user: payload, error: null}
+
+
+
+	reduce( authActions.loginSuccess(user) ), the return value from authActions.loginSuccess(user) that is {type: 'loginSuccess', payload: user} is passed, dispached
+	to the reducer function initally provided to the useReducer hook, it's passed to the second argument: (state, {type, payload}) => {...}
+
 */
 
 const AuthContext = createContext();

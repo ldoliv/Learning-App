@@ -41,7 +41,7 @@ export function useToggle() {
   function getTogglerProps({onClick, ...props} = {}) {
     return {
       'aria-pressed': on,
-      onClick: (event) => callAll(onClick, toggle)(event),
+      onClick: (event) => callAll(onClick, toggle)(event),  // executes the onClick we passed it in PropGetters.js as well as the toggle function
       ...props,
     }
   }

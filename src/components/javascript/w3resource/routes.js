@@ -2,35 +2,35 @@
 export const routes = [
 	{
 		label: <>
-			<p>Display the current day and time in the following format.</p>
+			<p>1. Display the current day and time in the following format.</p>
 		</>,
 		path: 'basic-current-day-time',
 		componentFilename: 'basic/1.CurrentDayTime'
 	},
 	{
 		label: <>
-			<p>Get the current date in the format: dd/mm/yyyy</p>
+			<p>2. Get the current date in the format: dd/mm/yyyy</p>
 		</>,
 		path: 'basic-current-date',
 		componentFilename: 'basic/2.CurrentDate'
 	},
 	{
 		label: <>
-			<p>Rotate the string "w3resource" in right direction by periodically removing one letter from the end of the string and attaching it to the front.</p>
+			<p>3. Rotate the string "w3resource" in right direction by periodically removing one letter from the end of the string and attaching it to the front.</p>
 		</>,
 		path: 'basic-rotate-chars',
 		componentFilename: 'basic/3.RotateChars'
 	},
 	{
 		label: <>
-			<p>Find 1st January is being a Sunday between 2014 and 2050.</p>
+			<p>7. Find the 1st January that is a Sunday between 2014 and 2050.</p>
 		</>,
 		path: 'basic-first-sunday',
 		componentFilename: 'basic/7.FirstSunday'
 	},
 	{
 		label: <>
-			<p>Calculate days left until next Christmas.</p>
+			<p>9. Calculate days left until next Christmas.</p>
 		</>,
 		path: 'basic-days-till-christmas',
 		componentFilename: 'basic/9.DaysTillChristmas'
@@ -44,7 +44,7 @@ export const routes = [
 	},
 	{
 		label: <>
-			<p>23. Create a new string from a given string changing the position of first and last characters. The string length must be greater than or equal to 1.</p>
+			<p>23. Return a new string with the first and last characters swaped. The string length must be greater than or equal to 1.</p>
 		</>,
 		path: 'basic-swap-first-last-chars',
 		componentFilename: 'basic/23.SwapChars'

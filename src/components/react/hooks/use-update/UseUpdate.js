@@ -4,19 +4,17 @@ import {useState, useEffect, useRef} from 'react';
 // an effect that doesn't run on init
 // ignores the first render
 
-function useUpdate(callback, deps = []) {
+export function useUpdate(callback, deps = []) {
 	const ref = useRef(true);
 
 	useEffect(() => {
-
 		// the first time it runs it ignores
 		if (ref.current) {
-			// console.log('first');
 			ref.current = false;
 			return;
 		}
-		// console.log('second');
 		return callback();
+
 	}, [callback, ...deps])
 }
 

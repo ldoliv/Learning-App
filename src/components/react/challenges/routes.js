@@ -1,31 +1,18 @@
 
+
 export const routes = [
 	{
-		path: 'hackernoon-counter-simple',
+		path: 'hackernoon',
 		label: <>
-			<p>Hackernoon - Simple Counter</p>
+			<p>Hackernoon <br />https://hackernoon.com/top-3-coding-challenges-for-mid-level-react-developers</p>
 		</>,
-		componentFilename: 'hackernoon/1.counter/Counter'
+		componentFilename: 'hackernoon/Challenges'
 	},
 	{
-		path: 'hackernoon-counter-context',
+		path: 'others',
 		label: <>
-			<p>Hackernoon - Counter using context</p>
+			<p>Others</p>
 		</>,
-		componentFilename: 'hackernoon/2.counter-context/CounterContext'
-	},
-	{
-		path: 'hackernoon-list-items',
-		label: <>
-			<p>Hackernoon - List Items - Add remove items</p>
-		</>,
-		componentFilename: 'hackernoon/3.list-items/ListItems'
-	},
-	{
-		path: 'hackernoon-api-data',
-		label: <>
-			<p>Hackernoon - Displaying Data Coming From an API</p>
-		</>,
-		componentFilename: 'hackernoon/4.api-data/ApiData'
+		componentFilename: 'others/Challenges'
 	},
 ];

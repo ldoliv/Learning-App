@@ -2,6 +2,7 @@ import {useEffect, useState} from "react"
 import LoadingService from "../services/LoadingService";
 
 
+
 export default function Loader() {
 
 	const [loading, setLoading] = useState(false);
@@ -13,8 +14,8 @@ export default function Loader() {
 		const event = LoadingService.setLoading(setLoading)
 		
 		return () => {
-			event.off()
-			// LoadingService.unsetLoading()		// <- also works
+			LoadingService.unsetLoading()		
+			// event.off()		// <- also works
 		}
 	}, [])
 

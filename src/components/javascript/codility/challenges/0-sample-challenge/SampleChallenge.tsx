@@ -2,67 +2,26 @@ import Answer from 'components/global/Challenge';
 
 
 
-function unique(value: number, index: number, self: number[]) {
-	return self.indexOf(value) === index;
-}
+function getNextPositiveInt(arr: number[] ) {
 
-// function getMissing(A: number[]) {
+	// filter out negative numbers and sort the array
+	const unique = arr
+		.filter((val, index, arr) => arr.indexOf(val) === index && val > 0)
+		.sort((a, b) => a - b);
 
-// 	const uniqueVals = A.filter(unique);
-// 	uniqueVals.sort();
-
-// 	// console.log(uniqueVals);
-
-
-// 	let next = 1;
-
-// 	for (let i = 0; i < uniqueVals.length - 1; i++) {
-// 		const expectedNext = uniqueVals[i] + 1;
-// 		next = uniqueVals[i + 1];
-
-// 		if (expectedNext != next && expectedNext > 0) {
-// 			return expectedNext
-// 		}
-// 	}
-
-// 	return next > 0 ? next + 1 : 1;
-// }
-
-function getMissing_v2(A: number[]) {
-
-	// const values = A.filter(n => n > 0).sort();
-	const values = A.filter((val, idx, arr) => arr.indexOf(val) === idx && val > 0).sort();
-	console.log(values);
-
-	if (!values.length) {
+	// console.log(arr);
+	// console.log(unique);
+	if (!unique.length)
 		return 1;
+
+	// this part deals with the sequence of numbers and returns the correct next number
+	for (let i = 1; i < unique.length; i++) {
+		if (unique[i] !== (unique[i - 1] + 1))
+			return unique[i - 1] + 1;
 	}
-
-	// you view "x" as the expected next. It starts out as the mininum value
-	let expected = values[0];
-
-	for (let i = 0; i < values.length; i++) {
-
-		const current = values[i];
-		
-		console.log(expected, current, expected < current);
-
-		// if expected is smaller than the next value, means that it's the one that's missing
-		if (current > expected) {
-			return expected
-		}
-		expected = current + 1
-	}
-
-	return expected
+	// if not found within the sequence return the last number + 1
+	return unique[unique.length - 1] + 1;
 }
-
-/*
-	2 > 2  false
-	3 > 3  false
-	4 > 4  false
-	6 > 5  true <-
-*/
 
 
 export default function SampleChallenge() {
@@ -81,6 +40,10 @@ export default function SampleChallenge() {
 			input: [-1, -3],
 			output: 1
 		},
+		{
+			input: [-1, -3, 0],
+			output: 1
+		},
 	]
 
 
@@ -90,14 +53,16 @@ export default function SampleChallenge() {
 			descp={<>
 				<p>Given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.</p>
 				<p>For example, given A =[1, 3, 6, 4, 1, 2], the function should return 5.</p>
-				<p>Given A = [1, 2, 3], the function should return 4.<br />Given A = [−1, −3], the function should return 1.</p>
+				<p>Given A = [1, 2, 3], the function should return 4.<br />Given A = [-1, -3], the function should return 1.</p>
 			</>}
 			result={
 				sets.map((set, i) => {
-					const output = getMissing_v2(set.input);
+					const output = getNextPositiveInt(set.input);
 					const passed = set.output === output;
 					return <p key={i}>input: [{set.input.join(', ')}], output: {output}, expected: {set.output}, result: <span style={{
 						color: passed ? 'green' : 'red',
+						// backgroundColor: 'white',
+						// padding: '1px 3px',
 					}}>{passed ? 'Passed' : 'Failed'}</span></p>
 				})
 			}

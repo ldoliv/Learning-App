@@ -5,7 +5,7 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 */
 
 /*
-	Everytime person state changes the child component is rendered.
+	When state changes in the parent, Child components will always render
 */
 
 

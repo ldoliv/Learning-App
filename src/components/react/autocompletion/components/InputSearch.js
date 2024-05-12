@@ -1,10 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
+import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
+
 
 function InputSearch(props) {
 
-	console.log('InputSearch rendered');
-
+	// console.log('InputSearch rendered');
+	// const renderCount = useRenderCounter(0);
 	const searchContainer = classnames('control', {'is-loading': props.loading}, props.className);
 
 	function handleChange(e) {
@@ -13,10 +15,10 @@ function InputSearch(props) {
 
 	return (
 		<div className={searchContainer} >
+			{/* {renderCount} */}
 			<input type="text" className="input" value={props.value} onChange={handleChange} />
 		</div>
 	)
 }
 
-// export default React.memo(InputSearch);
 export default InputSearch;

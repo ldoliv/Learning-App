@@ -11,6 +11,7 @@ function useToggle() {
 	return {on, toggle, setOn, setOff};
 }
 
+
 export function ToggleSimple() {
 
 	const {on, toggle, setOn, setOff} = useToggle();

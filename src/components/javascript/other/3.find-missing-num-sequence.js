@@ -4,12 +4,18 @@ function findMissing(arr) {
 
 	arr.sort((a, b) => a - b);
 
-	for (let i = 0, {length} = arr; i < length - 1; i++) {
-		const expectedNext = arr[i] + 1;
-		if (expectedNext !== arr[i + 1]) {
-			return expectedNext;
+	for (let j = 0; j < arr.length; j++) {
+		if (j > 0 && arr[j] !== (arr[j - 1] + 1)) {
+			return arr[j - 1] + 1;
 		}
 	}
+
+	// for (let i = 0, {length} = arr; i < length - 1; i++) {
+	// 	const expectedNext = arr[i] + 1;
+	// 	if (expectedNext !== arr[i + 1]) {
+	// 		return expectedNext;
+	// 	}
+	// }
 }
 
 

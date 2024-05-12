@@ -2,6 +2,7 @@ import React, {lazy, Suspense} from 'react';
 
 import {javascriptRoutes} from './javascriptRoutes';
 import {reactRoutes} from './reactRoutes';
+import {typescriptRoutes} from './typescriptRoutes';
 
 
 import Home from 'pages/home/HomePage';
@@ -13,7 +14,8 @@ const Learning = lazy(() => import(`pages/learning/LearningPage`));
 
 const mainRouteObjs = [
 	javascriptRoutes,
-	reactRoutes
+	reactRoutes,
+	typescriptRoutes
 ];
 
 export function useRoutes() {

@@ -621,28 +621,6 @@ theFunction.call(undefined, ...['Matthew', 'physicist']); // used with the sprea
 const numbers = [5, 6, 2, 3, 7];
 const max = Math.max.apply(null, numbers);
 
----------------------------------------
-
-const module = {
-  x: 42,
-  getX: function() {
-	 return this.x;
-  }
-};
-
-x = 'abc';
-
-// unboundGetX get's it's "this" depending on the scope where/when it's assigned
-const unboundGetX = module.getX;
-
-// The function gets invoked at the global scope
-console.log(unboundGetX());   // 'abc'
-
-// The scope is maintained
-console.log(module.getX());   // 42
-
-const boundGetX = unboundGetX.bind(module);
-console.log(boundGetX());     // 42
 				`}</>
 			),
 			url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call",
@@ -1246,30 +1224,49 @@ return (
 		tags: ["React"],
 	},
 	{
-		quest: "Behaviour of \"this\" within class methods",
+		quest: "Behaviour of \"this\"",
 		answ: {
 			desc: (
 				<>
-					<p>
-						By default, the value of this inside a function depends on how the function was created / assigned. In this example, because the function was called through the obj reference, its value of this was obj rather than the class instance.
-					</p>
+					<p>In JavaScript, the value of this is determined at <b>runtime based on how the function is called</b>, rather than how it is defined. This means that the value of this can be different depending on how the method is called. When a method is called on an object, the value of this is set to the object that the method is called on.</p>
+					<p>However, when a class method is called without an object context, there is no object for this to refer to. As a result, the value of this defaults to the global window object in a browser environment, or the global object in a Node.js environment. This can lead to unexpected behavior or errors if the method relies on the this value being bound to the class.</p>
+					<p>To bind the value of this to the class, you can use techniques like the bind method or arrow functions, as mentioned in the previous answer. These techniques explicitly set the value of this to the class, regardless of how the method is called.</p>
 				</>
 			),
 			code: <>{`
 class MyClass {
-  name = "MyClass";
-  getName() {
-	 return this.name;
+  myMethod() {
+    console.log(this);
   }
 }
-const c = new MyClass();
+
+const myObject = new MyClass();
+
+// Call the method on the object
+myObject.myMethod(); // Output: MyClass {}
+
+
+// Call the method without an object context
+// When you assign a method to a variable like, the method loses its original object context.
+// This happens because the method is now being treated as a regular function,
+// and the value of this within a regular function is determined based on how the function is called, not how it is defined.
+
+const myFunction = myObject.myMethod;
+myFunction(); // Output: window object
+
+-----------------------------------
+
 const obj = {
   name: "obj",
-  getName: c.getName,      // c.getName "this" becomes scoped to "obj"
+  getName: function() {
+	console.log(this)
+  },      
 };
  
-// Prints "obj", not "MyClass"
-console.log(obj.getName());
+obj.getName();		// Output: {name: 'obj', getName: ƒ}
+
+const method = obj.getName;
+method();	// Output: window object
 
 -----------------------------------
 
@@ -1288,10 +1285,37 @@ class MyClass {
 
 -----------------------------------
 
+class User {
+
+	constructor (name) {
+		this.name = name;
+
+		// this.handleClickBtn1 = this.handleClickBtn1.bind(this);		💰 // strictly bind "this" to the class
+
+		document.getElementById('button1').addEventListener('click', this.handleClickBtn1);	// <- it will lose it's "this" if not strictly bound
+		document.getElementById('button2').addEventListener('click', this.handleClickBtn2);
+	}
+
+	getName() {
+		return this.name;		// <- Here works just fine 😎
+	}
+
+	handleClickBtn1(e) {
+		console.log(this);
+	}
+
+	// No issues with an arrow function, it doesn't have it's own "this"
+	handleClickBtn2 = (e) => {
+		console.log(this);
+	}
+}
+
+-----------------------------------
+
 Using a arrow function has drawbacks
 
 . Why is it possible to use arrow functions?
-	. They don't provide their own "this" binding (it retains the this value of the enclosing lexical context).
+. They don't provide their own "this" binding (they inherit this from the surrounding lexical scope).
 . The this value is guaranteed to be correct at runtime, even for code not checked with TypeScript
 . This will use more memory, because each class instance will have its own copy of each function defined this way
 . You can't use super.getName in a derived class, because there's no entry in the prototype chain to fetch the base class method from

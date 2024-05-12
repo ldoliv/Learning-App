@@ -30,15 +30,15 @@ function ErrorFallback({error, resetErrorBoundary}) {
 
 export function TestErrorBoundary(props) {
 
-	// return (
-	// 	<CustomErrorBoundary render={RenderError}>
-	// 		<BuggyCounter />
-	// 	</CustomErrorBoundary>
-	// )
-
 	return (
-		<ErrorBoundary FallbackComponent={ErrorFallback}>
+		<CustomErrorBoundary render={RenderError}>
 			<BuggyCounter />
-		</ErrorBoundary>
+		</CustomErrorBoundary>
 	)
+
+	// return (
+	// 	<ErrorBoundary FallbackComponent={ErrorFallback}>
+	// 		<BuggyCounter />
+	// 	</ErrorBoundary>
+	// )
 }

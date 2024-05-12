@@ -23,14 +23,12 @@ export default function UseModal() {
 				className="info"
 				isOpen={showModal}
 				title={`Modal title`}
-				// closeAfterMs={props.closeAfterMs}
-				// afterClose={props.afterClose}
 				
 				// parentSelector='#modal-container'
 				parentSelector='#root'
 		
 				onClose={() => setShowModal(false)}
-				styles={modalStyles}
+				delayBeforeRemove={500}
 
 				content={
 					<div className="row gx-2 align-items-center">

@@ -6,20 +6,20 @@ export const javascriptRoutes = {
 	routes: [
 		{
 			desc: <>
+				Code Testing
+			</>,
+			output: '',
+			path: 'code-testing',
+			componentPath: 'code-testing/CodeTesting',
+			tags: []
+		},
+		{
+			desc: <>
 				W3Resource - Code challenges
 			</>,
 			output: '',
 			path: 'w3resource',
 			componentPath: 'w3resource',
-			tags: []
-		},
-		{
-			desc: <>
-				Codility - Code challenges
-			</>,
-			output: '',
-			path: 'codility',
-			componentPath: 'codility',
 			tags: []
 		},
 		{
@@ -44,19 +44,10 @@ export const javascriptRoutes = {
 			tags: []
 		},
 		{
-			desc: 'Using Fetch with async await',
+			desc: 'Using Fetch with async await, get data from "https://jsonplaceholder.typicode.com/users/1"',
 			output: '',
 			path: 'other/fetch',
 			componentPath: 'other/4.fetch',
-			tags: []
-		},
-		{
-			desc: <>
-				Simple Typescript
-			</>,
-			output: '',
-			path: 'typescript/simple',
-			componentPath: 'typescript/simple.ts',
 			tags: []
 		},
 		{
@@ -68,6 +59,23 @@ export const javascriptRoutes = {
 			componentPath: 'other/5.Currying',
 			tags: []
 		},
-		
+		{
+			desc: <>
+				Codility - Code challenges
+			</>,
+			output: '',
+			path: 'codility',
+			componentPath: 'codility',
+			tags: []
+		},
+		{
+			desc: <>
+				Simple Typescript
+			</>,
+			output: '',
+			path: 'typescript/simple',
+			componentPath: 'typescript/simple.ts',
+			tags: []
+		},
 	]
 }

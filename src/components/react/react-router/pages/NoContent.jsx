@@ -2,6 +2,6 @@
 
 export function NoContent() {
 	return (
-		<p>There's nothing here!</p>
+		<p>404 Page not found!</p>
 	)
 }

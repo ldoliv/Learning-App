@@ -2,7 +2,7 @@ import React from 'react';
 
 function List({items, isLoading, isError}) {
 
-	console.log('List rendered');
+	// console.log('List rendered');
 
 	if (isError) return <div>Something went wrong...</div>
 

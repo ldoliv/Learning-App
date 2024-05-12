@@ -5,9 +5,9 @@ import {Switch} from 'components/global/Switch/Switch';
 
 export function Toggle(props) {
 
-  const [on, setOn] = React.useState(false)
+	const [on, setOn] = React.useState(false)
 
-  const toggle = () => setOn(!on)
+	const toggle = () => setOn(!on)
 
   
 	return React.Children.map(props.children, (child, index) => {

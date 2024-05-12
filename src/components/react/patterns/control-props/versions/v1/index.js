@@ -6,13 +6,14 @@ import {useToggle, actionTypes} from './hooks/useToggle';
 
 function Toggle({on: controlledOn, onChange}) {
 
-  const {on, getTogglerProps} = useToggle({on: controlledOn, onChange})
+  const {on, getTogglerProps} = useToggle({on: controlledOn, onChange})   // 2
   const props = getTogglerProps({on})
   return <Switch {...props} />
 }
 
 
 function ControlProps() {
+  
   const [bothOn, setBothOn] = React.useState(false)
   const [timesClicked, setTimesClicked] = React.useState(0)
 
@@ -30,13 +31,13 @@ function ControlProps() {
   }
 
   return (
-	  <div>
-		  
+    <div>
+
       <div>
+        <Toggle on={bothOn} onChange={handleToggleChange} /> {/* 1 */}
         <Toggle on={bothOn} onChange={handleToggleChange} />
-        <Toggle on={bothOn} onChange={handleToggleChange} />
-		</div>
-		  
+      </div>
+
       {timesClicked > 4 ? (
         <div data-testid="notice">
           Whoa, you clicked too much!
@@ -44,17 +45,17 @@ function ControlProps() {
         </div>
       ) : (
         <div data-testid="click-count">Click count: {timesClicked}</div>
-		  )}
-		  
-		  <button onClick={handleResetClick}>Reset</button>
-		  
+      )}
+
+      <button onClick={handleResetClick}>Reset</button>
+
       <hr />
       <div>
         <div>Uncontrolled Toggle:</div>
-			<Toggle
-				onChange={(...args) =>
-					console.info('Uncontrolled Toggle onChange', ...args)
-				}
+        <Toggle
+          onChange={(...args) =>
+            console.info('Uncontrolled Toggle onChange', ...args)
+          }
         />
       </div>
     </div>

@@ -25,6 +25,7 @@ const initialState = {
 type initialStateT = typeof initialState;
 
 
+
 function countReducer(state: initialStateT, action: actionsT) {
 	
 	switch (action.type) {
@@ -36,6 +37,11 @@ function countReducer(state: initialStateT, action: actionsT) {
 			throw new Error('Unhandled action type')
 	}
 }
+
+// Action creators | this is swaped around from what I've seen before normally it's dispatch(increment) and not increment(dispatch)
+const increment = (dispatch: React.Dispatch<actionsT>) => dispatch({type: Action.increment, payload: 1})
+const decrement = (dispatch: React.Dispatch<actionsT>) => dispatch({type: Action.decrement, payload: 1})
+
 
 type ICounterProvider = {
 	children: React.ReactNode
@@ -64,8 +70,6 @@ function useCount() {
 }
 
 
-const increment = (dispatch: React.Dispatch<actionsT>) => dispatch({type: Action.increment, payload: 1})
-const decrement = (dispatch: React.Dispatch<actionsT>) => dispatch({type: Action.decrement, payload: 1})
 
 
 export {CountProvider, increment, decrement, useCount}

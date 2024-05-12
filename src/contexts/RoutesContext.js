@@ -101,7 +101,7 @@ export function useNavUp({setFrom} = {setFrom: false}) {
 			} while (!foundRoute && pathParts.length)
 
 
-			const path = `${pathParts.length ? '/'+pathParts.join('/') : ''}/${last}`;
+			const path = `${pathParts.length ? '/' + pathParts.join('/') : ''}/${last}`;
 			// console.log('current: %o, go to: %o', location.pathname, path);
 
 			let prevPaths = [];
@@ -182,18 +182,18 @@ export function RouterProvider({routes, ...rest}) {
 
 	const location = useLocation();
 	const navigate = useNavigate();
-	
+
 	const [routesArr, dispatch] = useReducerMap(reducerMap, routes);
 
 	// console.log(routesArr);
 
-	// 1. Dynamic route isn't found so NoRouteFound is loaded, and uses the useNavUp custom hook, naviagates up to a found route that adds the dynamic routes
+	// 1. Dynamic route isn't found so NoRouteFound is loaded, and uses the useNavUp custom hook, navigates up to a found route that adds the dynamic routes
 	// 2. After the routes are added, executes this effect to return to the url from where it originally came from.
 
 	// This makes it possible to return to the dynamically created route after the dynamic routes are added.
 	// state.before is set in the useNavUp hook.
 
-	
+
 	React.useEffect(() => {
 		// console.info('effect after adding new routes');
 

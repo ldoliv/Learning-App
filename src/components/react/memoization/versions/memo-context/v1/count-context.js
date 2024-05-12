@@ -3,6 +3,7 @@ import React from 'react'
 
 const CountContext = React.createContext()
 
+
 function CountProvider(props) {
 	const [count, setCount] = React.useState(0)
 	
@@ -12,8 +13,6 @@ function CountProvider(props) {
 	
   return <CountContext.Provider value={value} {...props} />
 }
-
-
 
 
 function useCount() {

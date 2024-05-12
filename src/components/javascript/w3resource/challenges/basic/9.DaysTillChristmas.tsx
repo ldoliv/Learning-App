@@ -5,14 +5,16 @@ function calcDaysTillChristmas() {
 
   const today = new Date();
 
-  const christmas = new Date(today.getFullYear(), 11, 25)
-
-  if (today.getMonth() === 11 && today.getDate() > 25) {
-    christmas.setFullYear(christmas.getFullYear() + 1)
+  let christmas: Date = new Date(today.getFullYear(), 11, 25);
+  // let christmas = new Date(today.getFullYear() + '/12/25');  // <- also works
+  // let christmas = new Date('12/25/' + today.getFullYear());  // <- also works
+  
+  if (christmas.getTime() < today.getTime()) {
+    christmas.setFullYear(christmas.getFullYear() + 1);
   }
 
   const oneDay = 1000 * 60 * 60 * 24;
-  const daysDiff = Math.ceil((christmas.getTime() - today.getTime()) / oneDay)
+  const daysDiff = Math.floor((christmas.getTime() - today.getTime()) / oneDay)
 
   return daysDiff;
 }

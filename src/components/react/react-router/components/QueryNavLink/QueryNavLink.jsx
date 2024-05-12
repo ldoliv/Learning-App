@@ -8,5 +8,6 @@ export function QueryNavLink({to, ...props}) {
 
 	return (
 		<NavLink to={to + location.search} {...props} />
+		// <NavLink to={to} {...props} />
 	)
 }

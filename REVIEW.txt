@@ -1,0 +1,42 @@
+
+Javascript Review
+	- Follow sequence in the list
+
+React Review in this order
+	- Basics
+	- Momoization
+	- Error Boundary
+	- Forwarding refs
+	- Autocompletion
+	- Hooks
+		- useDataApi
+		- useMounted
+		- usePrevious
+		- useRenderCounter
+		- useUpdate
+		- useAsync
+		- useMedia
+		- useDisplayComponent <- Used by components/components/Modal.js
+
+	- Portals
+	- components/Modal
+	- Contexts
+		V2 - Context using an object literal for actions reducers
+	- Unit Testing
+	- Performance
+	- React router
+	- React router dynamic
+	- Redux like context hooks
+	- Patterns
+		- Trigger state service
+		- Render props
+		- Hocs
+		- Compound components
+		- Prop getters (hard)
+		- State reducer (hard)
+		- Control props (hard)
+	- Challenges
+
+----------------------------------
+
+

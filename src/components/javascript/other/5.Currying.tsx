@@ -7,7 +7,7 @@ import React from 'react'
 */
 
 
-function sum(a: number, b: number) {
+function normalSum(a: number, b: number) {
 	return a + b;
 }
 
@@ -38,19 +38,16 @@ function curry(func: Function) {
 
 export default function Currying() {
 
-	const sum1 = sum(2, 3)
-	const sum2 = basicCurriedSum(2)(3);
-
-	const curriedSum = curry(sum);
+	const curriedSum = curry(normalSum);
 
 	const sum3 = curriedSum(2, 3);
 	const sum4 = curriedSum(2)(3);
 
 	return (
 		<>
-			<div>{`sum(2, 3) -> ${sum1}`}</div>
-			<div>{`basicCurriedSum(2, 3) -> ${sum2}`}</div>
-			<div>----------</div>
+			<div>{`normalSum(2, 3) -> ${normalSum(2, 3)}`}</div>
+			<div>{`basicCurriedSum(2)(3) -> ${basicCurriedSum(2)(3)}`}</div>
+			<div>-------------------------------------------</div>
 			<div>{`curriedSum(2, 3) -> ${sum3}`}</div>
 			<div>{`curriedSum(2)(3) -> ${sum4}`}</div>
 		</>

@@ -23,7 +23,7 @@ export default function TestUseAync() {
 	// }, [pokemonName])
 
 
-	const {data, status, error, run} = useAsync_v2({status: pokemonName ? 'pending' : 'idle'})
+	const {status, data, error, run} = useAsync_v2({status: pokemonName ? 'pending' : 'idle'})
 
 	React.useEffect(() => {
 

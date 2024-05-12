@@ -46,9 +46,9 @@ function EagerLoading() {
 				{' show globe'}
 			</label>
 			<div style={{width: 400, height: 400}}>
-					<React.Suspense fallback={<div>Loading...</div>}>
-						{showGlobe ? <Globe /> : null}
-					</React.Suspense>
+				<React.Suspense fallback={<div>Loading...</div>}>
+					{showGlobe ? <Globe /> : null}
+				</React.Suspense>
 			</div>
 		</div>
 	)

@@ -25,7 +25,7 @@ export function Invoices() {
 				{invoices
 					.filter(invoice => {
 						if (!filterParam) return true;
-						return invoice.name.toLowerCase().startsWith(filterParam.toLowerCase());
+						return invoice.name.toLowerCase().includes(filterParam.toLowerCase());
 					})
 					.map(invoice => (
 						// <NavLink to={`/invoices/${invoice.number}`} key={invoice.number} className="px-3">{invoice.name}</NavLink>

@@ -28,7 +28,8 @@ export default function RunFetch() {
 			.then(users => {
 				setUserData(users);
 			})
-	}, [])
+	}, []);
+
 
 	// No need to touch code below
 	return (

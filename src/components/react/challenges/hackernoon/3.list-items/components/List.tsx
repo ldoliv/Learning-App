@@ -12,12 +12,6 @@ function List() {
 		setItems([...items, item])
 	}
 
-	// function deleteItem(text: string) {
-	// 	return () => {
-	// 		setItems(items.filter(item => item !== text))
-	// 	}
-	// }
-
 	function deleteItem(index: number) {
 		return () => {
 			// const itemsCpy = items.slice();

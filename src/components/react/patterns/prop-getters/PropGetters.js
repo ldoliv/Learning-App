@@ -19,7 +19,7 @@ export function PropGetters() {
       <button  {...getTogglerProps({
           'aria-label': 'custom-button',
 			    onClick: (event) => {
-				    // return false;			// works if we use callAll2(), then toggle() won't run next
+				    // return false;			// If we don't want the default function "toggle()" to run return false here and use callAll2() instead
             console.info('onButtonClick')
             console.info(event)
           },

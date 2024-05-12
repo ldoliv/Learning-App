@@ -25,7 +25,7 @@ export default function ReactVirtual() {
 	React.useEffect(() => {
 		import('./data/us-cities.json')
 			.then(cities => {
-				const citiesArr = Object.keys(cities).map(index => cities[index]);
+				const citiesArr = Object.keys(cities).map(index => cities[index]);	// didn't quite get this step as it creates an exact structure just like "cities".
 				setCities(citiesArr)
 			})
 	}, [])

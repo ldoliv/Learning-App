@@ -21,35 +21,17 @@ export default function AutocompletionWithHook() {
 
 	const [{isLoading, isError, data}, doFetch] = useDataApi(null, []);
 
+	
+	// ✅ works correctly
+	const debouceSearch = useCallback(debounce(getItems, DEBOUNCE_DELAY), []);
 
+	
 	useEffect(() => {
-
 		return () => {
 			// loadash debounce has a cancel method.
 			debouceSearch.cancel();		// ✅ cancel execution when unmounting the component
 		}
 	}, [])
-
-
-	// ❌ debounce function gets called on every render
-	// const debouceSearch = useCallback(() => {
-	// 	console.log('useCallback');
-	// 	return debounce(getItems, DEBOUNCE_DELAY)
-	// }, []);
-
-	// ✅ works correctly
-	const debouceSearch = useCallback(debounce(getItems, DEBOUNCE_DELAY), []);
-
-
-	// ✅ alternative correct way, memoizes the result returned by the function
-	// const debouceSearch = useMemo(() => {
-	// 	console.log('useMemo');
-	// 	return debounce(getItems, DEBOUNCE_DELAY)
-	// }, []);
-
-	// ❌ doesn't work
-	// const debouceSearch = useMemo(debounce(getItems, DEBOUNCE_DELAY), []);
-
 
 
 

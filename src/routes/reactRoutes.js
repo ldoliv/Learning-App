@@ -6,6 +6,33 @@ export const reactRoutes = {
 	routes: [
 		{
 			desc: <>
+				Testing
+			</>,
+			output: '',
+			path: 'testing',
+			componentPath: '_testing',
+			tags: ['React']
+		},
+		{
+			desc: <>
+				Basics
+			</>,
+			output: '',
+			path: 'basics',
+			componentPath: 'basics',
+			tags: ['React']
+		},
+		{
+			desc: <>
+				Challenges
+			</>,
+			output: '',
+			path: 'challenges',
+			componentPath: 'challenges',
+			tags: ['React']
+		},
+		{
+			desc: <>
 				Autocompletion
 				<ul>
 					<li>Debounce search requests</li>
@@ -46,24 +73,10 @@ export const reactRoutes = {
 			tags: []
 		},
 		{
-			desc: 'Hocs',
-			output: '',
-			path: 'hocs',
-			componentPath: 'hocs',
-			tags: []
-		},
-		{
 			desc: 'Portals',
 			output: '',
 			path: 'portals',
 			componentPath: 'portals',
-			tags: []
-		},
-		{
-			desc: 'Render Props',
-			output: '',
-			path: 'render-props',
-			componentPath: 'render-props',
 			tags: []
 		},
 		{
@@ -103,52 +116,11 @@ export const reactRoutes = {
 		},
 		{
 			desc: <>
-				Compound Components Pattern
-				<ul>
-					<li>Implicitly share state between parent and children for reusable components to form a complete UI.</li>
-				</ul>
+				Patterns
 			</>,
 			output: '',
-			path: 'patterns/compound-components',
-			componentPath: 'patterns/compound-components',
-			tags: ['Patterns']
-		},
-		{
-			desc: <>
-				Prop Getters Pattern
-				<ul>
-					<li>Add support to your hook for common use cases for UI elements</li>
-					<li>Basically your component provides a props object or a function that people can use to spread props across UI elements.</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'patterns/prop-getters',
-			componentPath: 'patterns/prop-getters',
-			tags: ['Patterns']
-		},
-		{
-			desc: <>
-				State Reducer Pattern
-				<ul>
-					<li>Simple Toogle Control</li>
-					<li>Toggle Control with a custom state reducer</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'patterns/state-reducer',
-			componentPath: 'patterns/state-reducer',
-			tags: ['Patterns']
-		},
-		{
-			desc: <>
-				Control Props Pattern
-				<ul>
-					<li>Useful for building controled components, you have control over the state of the component. It's more powerful than the state reducer pattern, not only can you changes the state based on actions dispatched, but you also can trigger state changes from outside the component or hook as well.</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'patterns/control-props',
-			componentPath: 'patterns/control-props',
+			path: 'patterns',
+			componentPath: 'patterns',
 			tags: ['Patterns']
 		},
 		{
@@ -217,18 +189,6 @@ export const reactRoutes = {
 		},
 		{
 			desc: <>
-				Trigger State Service
-				<ul>
-					<li>Trigger a component's state from outside itself</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'trigger-state-service',
-			componentPath: 'trigger-state-service',
-			tags: []
-		},
-		{
-			desc: <>
 				Custom Modal
 			</>,
 			output: '',
@@ -264,15 +224,6 @@ export const reactRoutes = {
 			tags: ['React']
 		},
 		{
-			desc: <>
-				Challenges
-			</>,
-			output: '',
-			path: 'challenges',
-			componentPath: 'challenges',
-			tags: ['React']
-		},
-				{
 			desc: <>
 				React Context
 			</>,
