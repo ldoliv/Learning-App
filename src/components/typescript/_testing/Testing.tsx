@@ -6,7 +6,7 @@ import React, {useEffect, useState, useRef} from "react"
 // 	To test just uncomment, as typescript checker runs in the IDE VSCode
 
 
-
+/*
 function addNumbers(a: number, b: number): string {
 	return (a + b).toString();
 }
@@ -56,7 +56,7 @@ const person: Person = [3]
 type person2T = ['aaa', 111];
 
 const person2: person2T = ['aaa', 111]
-
+*/
 
 
 

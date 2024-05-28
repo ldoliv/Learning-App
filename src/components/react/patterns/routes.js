@@ -49,9 +49,10 @@ export const routes = [
 			<ul>
 				<li>Simple Toogle Control</li>
 				<li>Toggle Control with a custom state reducer</li>
+				<li>Inversion of control</li>
 			</ul>
 		</>,
-		componentFilename: 'state-reducer',
+		componentFilename: 'state-reducer/StateReducer',
 	},
 	{
 		path: 'control-props',

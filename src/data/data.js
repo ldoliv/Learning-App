@@ -1,5 +1,24 @@
 let questions = [
 	{
+		quest: "Differences, similarities between Redux and Context api with useReducer hook",
+		answ: {
+			desc: (
+				<>
+					<p>Common:<br />
+					actions are exported and imported in the needed files<br />
+					state and dispatch is passed down through the provider</p>
+
+					<p>Differences:<br />
+					Redux provider has a "store" prop, when "store" is created it get's passed a reducer function<br />
+					Context provider has a "value" prop, that can be any value, normally the state and dispatch is passed to then be consumed by descendent components</p>
+				</>
+			),
+			code: "",
+			url: "",
+		},
+		tags: ["React", "Redux"],
+	},
+	{
 		quest: "Ternary operator",
 		answ: {
 			desc: "",

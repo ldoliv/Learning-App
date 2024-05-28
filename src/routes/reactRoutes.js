@@ -24,6 +24,24 @@ export const reactRoutes = {
 		},
 		{
 			desc: <>
+				Redux
+			</>,
+			output: '',
+			path: 'redux',
+			componentPath: 'redux/Redux',
+			tags: ['React']
+		},
+		{
+			desc: <>
+				Authentication
+			</>,
+			output: '',
+			path: 'authentication',
+			componentPath: 'authentication/Authentication',
+			tags: ['React']
+		},
+		{
+			desc: <>
 				Challenges
 			</>,
 			output: '',
@@ -110,8 +128,8 @@ export const reactRoutes = {
 		{
 			desc: 'Redux like context hooks',
 			output: '',
-			path: 'redux-like-context-hooks',
-			componentPath: 'redux-like-context-hooks',
+			path: 'redux-like-context-hooks-login',
+			componentPath: 'redux-like-context-hooks-login',
 			tags: []
 		},
 		{
@@ -161,6 +179,29 @@ export const reactRoutes = {
 			path: 'hooks/use-async',
 			componentPath: 'hooks/use-async',
 			tags: ['Hooks']
+		},
+		{
+			desc: <>
+				Hook - useApi()
+				<ul>
+					<li>Handles component mount and unmount.</li>
+					<li>Is initalized with an object containing async methods</li>
+					<li>Methods are wrapped in hof and status, data and error is then returned by the hook</li>
+				</ul>
+			</>,
+			output: '',
+			path: 'hooks/use-api',
+			componentPath: 'hooks/use-api',
+			tags: ['Hooks']
+		},
+		{
+			desc: <>
+				Global State
+			</>,
+			output: '',
+			path: 'global-state',
+			componentPath: 'global-state',
+			tags: ['React']
 		},
 		{
 			desc: <>
@@ -231,6 +272,6 @@ export const reactRoutes = {
 			path: 'contexts',
 			componentPath: 'contexts',
 			tags: ['React', 'Context']
-		},
+		}
 	]
 }

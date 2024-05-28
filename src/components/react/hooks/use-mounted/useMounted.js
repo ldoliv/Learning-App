@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useLayoutEffect, useMemo, useRef, useCallback} from "react";
 
 export function useMounted() {
-  const mountedRef = React.useRef(null);
+  const mountedRef = useRef(null);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     mountedRef.current = true;
     return () => {
       mountedRef.current = false;
     }
   }, [])
 
-  return mountedRef;
+  // return mountedRef;
+  // return () => mountedRef.current;
+  return useCallback(() => mountedRef.current, []);
 }

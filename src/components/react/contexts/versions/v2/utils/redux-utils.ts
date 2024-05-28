@@ -18,15 +18,13 @@ function createActions<T extends {}, PayloadT>(reducerMap: T): actionFnT<T, Payl
 
 
 
-
-// Reducer
-type reducerMapT<T, PayloadT> = {
-	[Key in keyof T]: (state: any, payload: PayloadT) => any
+type reducerMapT<T, StateT> = {
+	[Key in keyof T]: (state: StateT, payload: any) => StateT
 }
 
-function reducer<T extends reducerMapT<T, PayloadT>, PayloadT>(reducerMap: T) {
+function createReducerFn<T extends reducerMapT<T, StateT>, StateT>(reducerMap: T, initialState?: StateT) {
 
-	return (state: any, {type, payload}: {type: keyof T, payload: PayloadT}) => {
+	return (state: StateT = initialState as StateT, {type, payload}: {type: keyof T, payload: any}) => {
 		const handler = reducerMap[type];
 		return handler ? handler(state, payload) : state;
 	}
@@ -35,8 +33,8 @@ function reducer<T extends reducerMapT<T, PayloadT>, PayloadT>(reducerMap: T) {
 
 // ------------------------------------------------------------------
 
-export function createReducer<T extends reducerMapT<T, PayloadT>, PayloadT>(reducerMap: T) {
+export function createReducer<T extends reducerMapT<T, StateT>, StateT>(reducerMap: T, initialState?: StateT) {
 
-	return [createActions<T, PayloadT>(reducerMap), reducer<T, PayloadT>(reducerMap)] as const;
+	return [createActions<T, any>(reducerMap), createReducerFn<T, StateT>(reducerMap, initialState)] as const;
 }
 

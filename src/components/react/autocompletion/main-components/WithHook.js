@@ -33,8 +33,6 @@ export default function AutocompletionWithHook() {
 		}
 	}, [])
 
-
-
 	function getItems(qVal) {
 		doFetch(`${ITEMS_API_URL}?q=${qVal}`);
 	}

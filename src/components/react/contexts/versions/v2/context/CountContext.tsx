@@ -38,9 +38,9 @@ type reducerMapT = typeof reducerMap
 type actionKeys = keyof reducerMapT
 
 
-const [countActions, countReducer] = createReducer<reducerMapT, PayloadT>(reducerMap);
+const [countActions, countReducer] = createReducer<reducerMapT, stateT>(reducerMap);
 
-
+// countActions.
 
 // ----------------------------------------------
 

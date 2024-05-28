@@ -19,6 +19,8 @@ export function DynamicMenu({routes, baseFolder}) {
 	]);
 
 	return (
-		<Outlet />
+		<>
+			<Outlet />
+		</>
 	);
 }

@@ -1,20 +1,20 @@
-import React from "react";
+import React, {useMemo} from "react";
 import { useMounted } from "./useMounted";
 
 export default function TestUseMounted() {
 
-	const mountedRef = useMounted();
+	const isMounted = useMounted();
 	const [state, setState] = React.useState('old state');
 
 
 	function simRequest() {
 		setTimeout(() => {
-			console.log(mountedRef);
+			console.log(isMounted());
 
-			if (mountedRef.current) {
+			if (isMounted()) {
 				setState('new state');
 			}
-		}, 3000)
+		}, 2500)
 	}
 
 	return (

@@ -1,0 +1,1 @@
+export {GlobalState as default} from './GlobalState';

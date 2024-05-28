@@ -1,1 +1,0 @@
-export {StateReducerPattern as default} from './StateReducer';

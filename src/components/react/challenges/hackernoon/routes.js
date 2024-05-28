@@ -34,6 +34,6 @@ export const routes = [
 			<p>Reuse code by creating a hoc for 3 similar components</p>
 		</>,
 		componentFilename: '5.hoc/Hoc'
-	},
+	}
 ];
 
