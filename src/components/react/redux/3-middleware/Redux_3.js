@@ -8,12 +8,14 @@ import {Provider, useDispatch, useSelector} from 'react-redux';
 // Use Middleware to Handle Asynchronous Actions
 // ---------------------------
 
-
+// Actions
 const REQUESTING_DATA = 'REQUESTING_DATA'
 const RECEIVED_DATA = 'RECEIVED_DATA'
 
+// Action creators
 const requestingData = () => {return {type: REQUESTING_DATA}}
 const receivedData = (data) => {return {type: RECEIVED_DATA, users: data.users}}
+
 
 const handleAsync = () => {
 	return function(dispatch) {
@@ -30,11 +32,11 @@ const handleAsync = () => {
 	}
 };
 
+// Reducer
 const defaultState = {
 	fetching: false,
 	users: []
 };
-
 const asyncDataReducer = (state = defaultState, action) => {
 	switch (action.type) {
 		case REQUESTING_DATA:

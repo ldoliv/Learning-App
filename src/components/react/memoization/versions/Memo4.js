@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo, useState} from "react";
 import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
 /*
@@ -29,15 +29,15 @@ function Search ({ setSearch }) {
    )
 };
 // eslint-disable-next-line no-func-assign
-Search = React.memo(Search);
+Search = memo(Search);
 
 
 export default function Memo4(props) {
 
-   console.log("Memo4 rendered");
+   // console.log("Memo4 rendered");
 
-   const [, forceUpdate] = React.useState();
-   const [query, setSearch] = React.useState("");
+   const [, forceUpdate] = useState();
+   const [query, setSearch] = useState("");
 
 
 	// const handleSearch = (query) => {
@@ -62,7 +62,7 @@ export default function Memo4(props) {
          {/* ✅ wraped callback function in useCallback allowing to maintain the same reference and prevent rerenders */}
          <Search setSearch={handleSearchMemoized} />
 
-         <div>Searching: {query}</div>
+         <div className="my-3">Query: {query}</div>
          <button onClick={() => forceUpdate({})}>Force update</button>
 
       </div>

@@ -12,22 +12,22 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 function Child(props) {
 	const renderCount = useRenderCounter(0);
 	return (
-		<div className="mb-3">{renderCount} This is the child component</div>
+		<div className="mb-3">{renderCount} Child component</div>
 	)
 }
 
 export default function Memo1(props) {
 
-	const [, setPerson] = React.useState();
+	const [, setState] = React.useState();
 
-	function callApi() {
-		setPerson({name: 'Leonel'});
+	function update() {
+		setState({});
 	}
 
 	return (
 		<div>
 			<Child />
-			<button onClick={callApi}>Call api</button>
+			<button onClick={update}>Update parent component</button>
 		</div>
 	)
 }

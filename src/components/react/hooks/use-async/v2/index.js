@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {fetchPokemon} from "../helpers";
 import {useAsync} from "./UseAsync";
 
@@ -16,10 +16,28 @@ export default function TestUseAync() {
 
 function TestWithState() {
 
-	const [getPokemonR, getPokemon] = useAsync(fetchPokemon);
+	const fetchPokemonWrapper = useCallback((...args) => {
+		// console.log(args);
+		if (args.length === 2) {
+			return fetchPokemon(args[0], {
+				signal: args[1],
+			})
+		} else if (args.length === 3) {
+			return fetchPokemon(args[0], {
+				...args[1],
+				signal: args[2],
+			})
+		}
+	}, []);
+
+	const [getPokemonR, getPokemon] = useAsync(fetchPokemonWrapper);
+	// const [getPokemonR, getPokemon] = useAsync(fetchPokemon);
 
 	function handleClick() {
-		getPokemon('pikachu')
+		getPokemon('pikachu', {
+			delay: 2500
+		})
+		// getPokemon('pikachu')
 	}
 
 	useEffect(() => {
@@ -30,7 +48,10 @@ function TestWithState() {
 		}
 	}, [getPokemonR.status])
 
-	console.log('status: %o, data: %o, error: %o', getPokemonR.status, getPokemonR.data, getPokemonR.error);
+	console.log({
+		...getPokemonR,
+		status: Object.keys(getPokemonR.status).find(status => getPokemonR.status[status])
+	});
 
 	return (
 		<div className="mb-4">

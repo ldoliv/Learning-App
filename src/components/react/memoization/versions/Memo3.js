@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo, useMemo, useState} from "react";
 import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
 
@@ -14,42 +14,45 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 */
 
 // Uses comparison function
-const Child1 = React.memo((props) => {
+function Child1 (props) {
    const renderCount = useRenderCounter(0);
    return <div className="mb-3">{renderCount} This is the child component. Name is {props.person.name}</div>;
+};
 
+// eslint-disable-next-line no-func-assign
+Child1 = memo(Child1, (prevProps, currProps) => {
    // Return true to not rerender
-}, (prevProps, currProps) => {
    return prevProps.person.name === currProps.person.name;
-});
+})
 
 // Demo for React.useMemo
-const Child2 = React.memo((props) => {
+function Child2 (props) {
    const renderCount = useRenderCounter(0);
    return <div className="mb-3">{renderCount} This is the child component. Name is {props.person.name}</div>;
-});
+};
+
+// eslint-disable-next-line no-func-assign
+Child2 = memo(Child2);
 
 
 export default function Memo3(props) {
 
-   const [person, setPerson] = React.useState({ name: "" });
+   const [person, setPerson] = useState({ name: "" });
 
-   const memoObj = React.useMemo(() => (person), [person.name]);  // makes the reference to the object always the same
+   const memoObj = useMemo(() => person, [person.name]);  // makes the reference to the object always the same
 
-
-
-   function callApi() {
+   function updatePerson() {
       setPerson({ name: "Leonel" });
    }
 
    return (
       <div>
-         <Child1 person={person} />
+         <Child1 person={person} />    {/* ✅ Unstable but uses the compare function */}
 
-         <Child2 person={person} />
-         <Child2 person={memoObj} />
+         <Child2 person={person} />    {/* ❌ Unstable */}
+         <Child2 person={memoObj} />   {/* ✅ Stable */}
 
-         <button onClick={callApi}>Call api</button>
+         <button onClick={updatePerson}>Update person</button>
       </div>
    );
 }

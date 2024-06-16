@@ -2,9 +2,8 @@ import React from "react";
 import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
 
+
 // Run an effect on the child component when a prop value changes.
-
-
 function Child({number}) {
 	const renderCount = useRenderCounter(0);
 	const [num, setNum] = React.useState(number);
@@ -47,11 +46,13 @@ export default function Parent() {
 
 	return (
 		<>
+			<p>This is to show that by default a child component will always render when a parent component updates</p>
 			<button className="mb-3" onClick={generateNumber}>Update</button>
-
 			<div className="d-flex align-items-center">
 				{renderCount} <h1>Parent Component</h1>
 			</div>
+
+			<Child />
 			<Child number={number} />
 		</>
 	)

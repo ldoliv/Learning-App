@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo, useState, useCallback} from "react";
 import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
 /*
@@ -37,34 +37,41 @@ function Child ({name, person, updatePerson}) {
    
 // This handles the person object only rendering if the name changes. Return true to not rerender
 // eslint-disable-next-line no-func-assign
-Child = React.memo(Child, (prevProps, currProps) => {
+// Child = memo(Child);
+
+// eslint-disable-next-line no-func-assign
+Child = memo(Child, (prevProps, currProps) => {
    return prevProps.person.name === currProps.person.name;
 });
 
 export default function Memo5(props) {
 
    // console.log('Memo5 rendered');
+   const renderCount = useRenderCounter(0);
+   const [, forceUpdate] = useState();
+   const [person, setPerson] = useState({ name: "" });
 
-   const [person, setPerson] = React.useState({ name: "" });
-
-   function handleUpdate() {
+   function parentUpdatePerson() {
       setPerson({ name: "Parent" });
    }
 
-   // memoized
-   const memoSetPerson = React.useCallback((person) => {
-      console.log("updatePerson1 useCallback called");
+   function childUpdatePerson(person) {
       setPerson(person);
-   }, []);
+   }
+
+   // memoized
+   const memoChildUpdatePerson = useCallback(childUpdatePerson, []);
 
    return (
       <div>
+         {renderCount} <button className='mb-3' onClick={() => forceUpdate({})}>Force update</button>
 
          <div className="mb-4">
-            <button onClick={handleUpdate}>Update child from Parent</button>
+            <button onClick={parentUpdatePerson}>Update child from Parent</button>
          </div>
 
-         <Child name="child" person={person} updatePerson={memoSetPerson} />
+         <Child name="child" person={person} updatePerson={memoChildUpdatePerson} />
+         {/* <Child name="child" person={person} updatePerson={childUpdatePerson} /> */}
 
       </div>
    );

@@ -37,7 +37,16 @@ export const reactRoutes = {
 			</>,
 			output: '',
 			path: 'authentication',
-			componentPath: 'authentication/Authentication',
+			componentPath: 'authentication',
+			tags: ['React']
+		},
+		{
+			desc: <>
+				Forms
+			</>,
+			output: '',
+			path: 'forms',
+			componentPath: 'forms',
 			tags: ['React']
 		},
 		{
@@ -140,6 +149,13 @@ export const reactRoutes = {
 			path: 'patterns',
 			componentPath: 'patterns',
 			tags: ['Patterns']
+		},
+		{
+			desc: 'Hook - Use Shared State',
+			output: '',
+			path: 'hooks/use-shared-state',
+			componentPath: 'hooks/use-shared-state',
+			tags: ['Hooks']
 		},
 		{
 			desc: 'Hook - Use Previous',

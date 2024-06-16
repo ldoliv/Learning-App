@@ -37,26 +37,35 @@ function useApi(apiMethods) {
 	});
 
 	const mountedRef = useRef(true);
+	const abortControllers = useRef({});
 
 	useLayoutEffect(() => {
 		return () => {
 			mountedRef.current = false;
+			// Abort any pending requests when the component unmounts
+			Object.values(abortControllers.current).forEach(controller => controller.abort('Request aborted, component unmounted'));
 		};
 	}, []);
 
 	const isMounted = useCallback(() => mountedRef.current, []);
 
 	const wrapApiMethod = useCallback((methodName, method) => {
-		return async function(...args) {
-			setState((prevState) => ({
+		return async (...args) => {
+			
+			const controller = new AbortController();
+			abortControllers.current[methodName] = controller;
+
+			setState(prevState => ({
 				...prevState,
 				[methodName]: {status: getStatus(STATUS.PENDING), data: prevState[methodName].data, error: prevState[methodName].error},
 			}));
 
 			try {
-				const result = await method.apply(this, args);
+				const result = await method(...args, controller.signal);			// also pass the signal to the api method
+				// const result = await method.call(this, ...args, controller.signal);			// also pass the signal to the api method
+
 				if (isMounted()) {
-					setState((prevState) => ({
+					setState(prevState => ({
 						...prevState,
 						[methodName]: {status: getStatus(STATUS.RESOLVED), data: result, error: null},
 					}));
@@ -64,12 +73,14 @@ function useApi(apiMethods) {
 				}
 			} catch (err) {
 				if (isMounted()) {
-					setState((prevState) => ({
+					setState(prevState => ({
 						...prevState,
 						[methodName]: {status: getStatus(STATUS.REJECTED), data: null, error: err},
 					}));
 					// throw err;				// if we want to use .catch()	if this is here and is not handled within the component using the hook, it will cause an unhandled error
 				}
+			} finally {
+				delete abortControllers.current[methodName];
 			}
 		};
 	}, [isMounted]);
@@ -80,6 +91,12 @@ function useApi(apiMethods) {
 		setState(prevState => {
 			const newState = {...prevState};
 			methods.forEach(methodName => {
+
+				const controller = abortControllers.current[methodName];
+				if (controller) {
+					controller.abort(`reset ${methodName}, cancelled any pending requests`);
+				}
+
 				if (apiMethods[methodName]) {
 					newState[methodName] = {
 						status: getStatus(STATUS.IDLE),

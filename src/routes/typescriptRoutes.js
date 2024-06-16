@@ -13,5 +13,15 @@ export const typescriptRoutes = {
 			componentPath: '_testing',
 			tags: ['']
 		},
+		{
+			Desc: <>
+				<p>Polymorphic components. With the use of Typescript we can build polymorphic components and avoid passing wrong<br />
+					html tags as well as invalid attributes</p>
+			</>,
+			output: '',
+			path: 'polymorphic',
+			componentPath: 'polymorphic',
+			tags: ['']
+		},
 	]
 }

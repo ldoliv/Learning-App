@@ -21,7 +21,7 @@ const reducerMap = {
 const countActions = createActions(reducerMap);
 const countReducer = createReducerFn(reducerMap);
 
-// countActions
+// countActions.
 
 
 

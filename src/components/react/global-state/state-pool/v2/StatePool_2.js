@@ -10,7 +10,7 @@ import Display from './components/Display';
 // 	email: 'john@something.com'
 // });
 
-// Options 2
+// Option 2
 export const store = createStore({
 	count: 0,
 	user: {

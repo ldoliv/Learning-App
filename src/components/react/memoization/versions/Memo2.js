@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
 
@@ -16,22 +16,24 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
    => works fine for primitive values, for objects and functions more work is needed.
 */
 
-const Child = React.memo((props) => {
+function Child (props) {
 	const renderCount = useRenderCounter(0);
-   return <div className="mb-3">{renderCount} This is the child component. Name is {props.name}</div>;
-});
+   return <div className="mb-3">{renderCount} Child component. Name is {props.name}</div>;
+};
+// eslint-disable-next-line no-func-assign
+Child = memo(Child);    // 👈
 
 export default function Memo2(props) {
    const [person, setPerson] = React.useState({ name: "" });
 
-   function callApi() {
+   function updatePerson() {
       setPerson({ name: "Leonel" });
    }
 
    return (
       <div>
          <Child name={person.name} />
-         <button onClick={callApi}>Call api</button>
+         <button onClick={updatePerson}>Update person</button>
       </div>
    );
 }

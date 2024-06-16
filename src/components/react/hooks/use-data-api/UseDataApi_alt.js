@@ -31,14 +31,14 @@ function useDataApi(initialData) {
 				if (mounted) {
 					if (response.ok) {
 						const jsonR = await response.json();
-						setState(state => ({...state, loading: false, data: jsonR}));
+						setState(state => ({loading: false, data: jsonR, error: null}));
 					} else {
-						setState(state => ({...state, loading: false, error: new Error(handleErrorResponse(response))}));
+						setState(state => ({loading: false, data: null, error: new Error(handleErrorResponse(response))}));
 					}
 				}
 			} catch (error) {
 				if (mounted) {
-					setState(state => ({...state, loading: false, error: new Error(error)}));
+					setState(state => ({loading: false, data: null, error: new Error(error)}));
 				}
 			}
 		}

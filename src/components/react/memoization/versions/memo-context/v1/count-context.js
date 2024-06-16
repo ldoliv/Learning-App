@@ -8,7 +8,7 @@ function CountProvider(props) {
 	const [count, setCount] = React.useState(0)
 	
 	// memoize value
-	const value = React.useMemo(() => ({count, setCount}), [count])
+	const value = React.useMemo(() => ({count, setCount}), [count])	// 👈
 	// const value = {count, setCount}
 	
   return <CountContext.Provider value={value} {...props} />

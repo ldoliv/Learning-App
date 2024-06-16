@@ -1,0 +1,1 @@
+export {Polymorphic as default} from './Polymorphic';

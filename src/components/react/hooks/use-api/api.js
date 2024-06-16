@@ -1,9 +1,9 @@
-// /services/api.js
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
 
+
 export const apiMethods = {
-	login: async (user) => {
+	login: async (user, signal) => {
 		await delay(1000);
 		const {username, password} = user;
 		if (username === 'leo123' && password === '123') {
@@ -15,11 +15,11 @@ export const apiMethods = {
 		}
 		throw new Error('User not found!');
 	},
-	logout: async () => {
+	logout: async (signal) => {
 		await delay(1000);
 		return true;
 	},
-	getTasks: async () => {
+	getTasks: async (signal) => {
 		await delay(1000);
 
 		const random = Math.random();
@@ -39,13 +39,5 @@ export const apiMethods = {
 			}]
 		}
 		throw new Error('Something went wrong')
-
-
-		// try {
-		// 	const response = await fetch('');
-		// 	const data = await response.json();
-		// } catch (error) {
-
-		// }
 	}
 };

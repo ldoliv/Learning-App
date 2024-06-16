@@ -19,6 +19,7 @@ function CountDisplay() {
 		</div>
 	)
 }
+// eslint-disable-next-line no-func-assign
 CountDisplay = React.memo(CountDisplay);
 
 
@@ -32,6 +33,7 @@ function Counter() {
 		</div>
 	)
 }
+// eslint-disable-next-line no-func-assign
 Counter = React.memo(Counter);
 
 

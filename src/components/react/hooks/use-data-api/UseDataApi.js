@@ -32,7 +32,7 @@ export const useDataApi = (initialUrl, initialData) => {
 	});
 
 	useEffect(() => {
-		let didCancel = false;
+		let isMounted = false;
 
 		const fetchData = async () => {
 			dispatch({type: 'FETCH_INIT'});
@@ -40,13 +40,13 @@ export const useDataApi = (initialUrl, initialData) => {
 			try {
 				const result = await axios(url);
 
-				if (!didCancel) {
+				if (!isMounted) {
 					dispatch({type: 'FETCH_SUCCESS', payload: result.data});
 				}
 
 			} catch (error) {
 				
-				if (!didCancel) {
+				if (!isMounted) {
 					dispatch({type: 'FETCH_FAILURE'});
 				}
 			}
@@ -57,7 +57,7 @@ export const useDataApi = (initialUrl, initialData) => {
 		}
 
 		return () => {
-			didCancel = true;
+			isMounted = true;
 		};
 
 	}, [url]);
