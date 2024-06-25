@@ -189,7 +189,7 @@ function GameProvider({children}) {
 	)
 }
 
-export function App() {
+export default function App() {
 
 	return (
 		<GameProvider>

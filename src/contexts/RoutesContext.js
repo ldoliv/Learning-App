@@ -149,8 +149,8 @@ const reducerMap = {
 		// console.log(foundRoute);
 		if (foundRoute && !foundRoute?.children?.length) {
 			const stateCpy = cloneDeep(state);
-			const foundRoute = findRoute(path, stateCpy);
-			foundRoute.children = children;
+			const foundRouteCpy = findRoute(path, stateCpy);
+			foundRouteCpy.children = children;
 			// console.log('added: %o', stateCpy);
 			return stateCpy;
 		}

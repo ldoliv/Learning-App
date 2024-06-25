@@ -58,7 +58,7 @@ class Presentational extends React.Component {
 		});
 	}
 	submitMessage() {
-		this.props.submitNewMessage(this.state.input);		// <- manage part of the state
+		this.props.submitNewMessage(this.state.input);		// <- 👈 manage part of the state
 		this.setState((state) => ({
 			input: '',
 		}));
@@ -72,7 +72,7 @@ class Presentational extends React.Component {
 					onChange={this.handleChange} /><br />
 				<button onClick={this.submitMessage}>Submit</button>
 				<ul>
-					{this.props.messages.map((message, idx) => {		// <- a part of the state
+					{this.props.messages.map((message, idx) => {		// <- 👈 a part of the state
 						return (
 							<li key={idx}>{message}</li>
 						)

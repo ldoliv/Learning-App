@@ -432,6 +432,7 @@ export default memo(PercentageStat, arePropsEqual);
 					<p>It's a technique for reusing component logic.</p>
 					<p>HOC can be used for many use cases:</p>
 					<ul>
+						<li>It's ideal for code logic reuse for example encapsulating common code when using Components that cannot be changed (3rd party)</li>
 						<li>Code reuse, logic and bootstrap abstraction.</li>
 						<li>Render hijacking.</li>
 						<li>State abstraction and manipulation.</li>
@@ -966,6 +967,77 @@ console.log(sum(1, 2, 3, 4));
 				</>
 			),
 			code: null,
+			url: "",
+		},
+		tags: ["React"],
+	},
+	{
+		quest: "Custom hooks vs Hocs vs render props",
+		answ: {
+			desc: (
+				<>
+					<h5>Custom hooks</h5>
+
+					<p>Control: When the component that needs some logic is under your control.</p>
+					<p>Readability: Custom hooks help keep the component code clean and focused on UI logic.</p>
+					<p>Reusability: Easy to reuse logic across multiple components without modifying their structure.</p>
+
+					<h5>Higher-Order Components (HOCs)</h5>
+
+					<p>Third-Party Components: When you need to enhance or add logic to a third-party component.</p>
+					<p>Encapsulation: When you want to encapsulate logic and avoid modifying the original component.</p>
+					<p>Consistency: When you need to apply the same logic to multiple components consistently.</p>
+
+					<h5>Render Props</h5>
+
+					<p>Third-Party Components: When you need to pass additional data or logic to a third-party component in a flexible way.</p>
+					<p>Flexibility: When you need more control over how the logic affects rendering.</p>
+					<p>Avoiding Naming Collisions: Render props can help avoid naming collisions since you control the rendering.</p>
+				</>
+			),
+			code: (
+				<>{`
+// Custom hook
+
+import useUser from './useUser';
+
+function MyComponent() {
+  const user = useUser();
+
+  return (
+    <div>
+      {user ? <p>User: {user.name}</p> : <p>Loading...</p>}
+    </div>
+  );
+}
+
+// ----------------------------------------
+// Higher order component
+
+import withUser from './withUser';
+import ThirdPartyComponent from 'third-party-library';
+
+const EnhancedComponent = withUser(ThirdPartyComponent);
+
+function App() {
+  return <EnhancedComponent />;
+}
+
+// ----------------------------------------
+// Render props
+
+import UserProvider from './UserProvider';
+import ThirdPartyComponent from 'third-party-library';
+
+function App() {
+  return (
+    <UserProvider>
+      {(user) => <ThirdPartyComponent user={user} />}
+    </UserProvider>
+  );
+}
+			`}</>
+			),
 			url: "",
 		},
 		tags: ["React"],

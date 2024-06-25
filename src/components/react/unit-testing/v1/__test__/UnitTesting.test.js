@@ -1,9 +1,9 @@
 import {render, screen} from '@testing-library/react';
-import {UnitTesting} from '../UnitTesting';
+import UnitTesting from '../UnitTesting_1';
 
 
 
-test('Test if element exists async', async () => {
+test('if element exists async', async () => {
 
 	render(<UnitTesting />);
 

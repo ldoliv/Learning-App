@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 
 /*
@@ -72,11 +72,39 @@ const withMouseHoc3 = (Component) => (props) => {
 	);
 }
 
+const withMouseHoc4 = (Component) => (props) => {
+
+	const [mousePos, setMousePos] = useState({
+		x: 0,
+		y: 0
+	});
+
+	useEffect(() => {
+		const handleMouseMove = (e) => {
+			setMousePos({
+				x: e.clientX,
+				y: e.clientY
+			})
+		}
+		window.addEventListener('mousemove', handleMouseMove)
+
+		return () => {
+			// console.log('unmounted');
+			window.removeEventListener('mousemove', handleMouseMove)
+		}
+	}, [])
+
+	return <Component {...props} pos={mousePos} />
+}
+
+// -----------------------------------------------------------------------
+
 // The component we pass is wrapped by extra functionality and a new component is returned.
 
 // const WithMouse = withMouseHoc1(DisplayMousePos);
 // const WithMouse = withMouseHoc2(DisplayMousePos);
-const WithMouse = withMouseHoc3(DisplayMousePos);
+// const WithMouse = withMouseHoc3(DisplayMousePos);
+const WithMouse = withMouseHoc4(DisplayMousePos);
 
 
 export default function Hocs() {

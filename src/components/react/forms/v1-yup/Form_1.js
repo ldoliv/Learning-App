@@ -11,7 +11,8 @@ const initialState = {
 	email: '',
 	password: '',
 	role: '',
-	subscribe: false
+	subscribe: false,
+	gender: ''
 };
 
 export default function Form_1() {
@@ -20,18 +21,16 @@ export default function Form_1() {
 	const [errors, setErrors] = useState({});
 	const [touched, setTouched] = useState({});
 
-	const validateField = async (target) => {
-		const {name, value, type, checked} = target;
-		try {
-			await signupSchema.validateAt(name, {[name]: type === 'checkbox' ? checked : value});
-			setErrors((prevErrors) => ({...prevErrors, [name]: undefined}));
-		} catch (validationError) {
-			setErrors((prevErrors) => ({...prevErrors, [name]: validationError.message}));
-		}
-	}
+
+	// console.log(formValues);
+	// console.log(errors);
+
 
 	const handleChange = async (e) => {
 		const {name, value, type, checked} = e.target;
+
+		console.log(type);
+
 		setFormValues({
 			...formValues,
 			[name]: type === 'checkbox' ? checked : value
@@ -47,6 +46,16 @@ export default function Form_1() {
 		setTouched({...touched, [name]: true});
 		validateField(e.target);
 	};
+
+	const validateField = async (target) => {
+		const {name, value, type, checked} = target;
+		try {
+			await signupSchema.validateAt(name, {[name]: type === 'checkbox' ? checked : value});
+			setErrors((prevErrors) => ({...prevErrors, [name]: undefined}));
+		} catch (validationError) {
+			setErrors((prevErrors) => ({...prevErrors, [name]: validationError.message}));
+		}
+	}
 
 	const validateAll = async () => {
 		try {
@@ -118,6 +127,23 @@ export default function Form_1() {
 							<option value="business">Business</option>
 						</select>
 						{errors.role && <div className="invalid-feedback">{errors.role}</div>}
+					</div>
+
+					<div className="form-field">
+						<label className="form-label">Gender <sup>*</sup></label>
+						<div className={`form-check form-check-inline ${errors.gender ? 'is-invalid' : ''}`}>
+							<input type="radio" className="form-check-input" id="gender-male" name="gender" value="male" onChange={handleChange} checked={formValues.gender === 'male'} />
+							<label className="form-check-label" htmlFor="gender-male">Male</label>
+						</div>
+						<div className={`form-check form-check-inline ${errors.gender ? 'is-invalid' : ''}`}>
+							<input type="radio" className="form-check-input" id="gender-female" name="gender" value="female" onChange={handleChange} checked={formValues.gender === 'female'} />
+							<label className="form-check-label" htmlFor="gender-female">Female</label>
+						</div>
+						<div className={`form-check form-check-inline ${errors.gender ? 'is-invalid' : ''}`}>
+							<input type="radio" className="form-check-input" id="gender-other" name="gender" value="other" onChange={handleChange} checked={formValues.gender === 'other'} />
+							<label className="form-check-label" htmlFor="gender-other">Other</label>
+						</div>
+						{errors.gender && <div className="invalid-feedback">{errors.gender}</div>}
 					</div>
 
 					<div className="form-field">

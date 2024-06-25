@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import {CountProvider, useCount} from './count-context'
 import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
@@ -15,7 +15,7 @@ import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRen
 
 	Your context value changes frequently
 	Your context has many consumers
-	You are bothering to use React.memo (because things are legit slow)
+	You are bothering to use memo (because things are legit slow)
 	You've actually measured things and you know it's slow and needs to be optimized
 */
 
@@ -31,7 +31,7 @@ function CountDisplay() {
 	)
 }
 // eslint-disable-next-line no-func-assign
-CountDisplay = React.memo(CountDisplay)
+CountDisplay = memo(CountDisplay)
 
 
 function Counter() {
@@ -45,8 +45,19 @@ function Counter() {
 	)
 }
 // eslint-disable-next-line no-func-assign
-Counter = React.memo(Counter)
+Counter = memo(Counter)
 
+
+function OtherComp() {
+	const renderCount = useRenderCounter()
+	return (
+		<div className='my-3'>
+			{renderCount} <span>Other component</span>
+		</div>
+	)
+}
+// eslint-disable-next-line no-func-assign
+// OtherComp = memo(OtherComp)
 
 
 export default function MemoContext() {
@@ -61,6 +72,7 @@ export default function MemoContext() {
 			<CountProvider>
 				<CountDisplay />
 				<Counter />
+				<OtherComp />
 			</CountProvider>
 		</div>
 	)

@@ -1,0 +1,24 @@
+.signup-form {
+	max-width: 450px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 30px;
+	border-radius: 10px;
+	border: 1px solid;
+}
+.signup-form .invalid-tooltip {
+	border-radius: 3px;
+	padding: 1px 8px;
+	margin-top: 1px;
+	font-size: 14px;
+}
+.signup-form .invalid-feedback {
+	
+}
+.signup-form .form-label {
+	margin-bottom: 2px;
+}
+.signup-form .form-field {
+	position: relative;
+	margin-bottom: 15px;
+}

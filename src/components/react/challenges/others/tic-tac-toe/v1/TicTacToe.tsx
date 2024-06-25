@@ -26,7 +26,7 @@ type TicTacToeState = {
 	xIsNext: boolean
 }
 
-export class TicTacToe extends React.Component {
+export default class TicTacToe extends React.Component {
 
 	state: TicTacToeState;
 

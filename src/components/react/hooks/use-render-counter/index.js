@@ -7,9 +7,15 @@ export default function RenderCounter() {
 	const renderCount = useRenderCounter(0);
 
 	return (
-		<>
-			<h1>{renderCount}</h1>
-			<button onClick={() => forceUpdate({})}>Click</button>
-		</>
+		<div className='container-fluid'>
+			<div className="row align-items-center">
+				<div className="col-auto">
+					{renderCount}
+				</div>
+				<div className="col-auto">
+					<button className='btn btn-light' onClick={() => forceUpdate({})}>Click</button>
+				</div>
+			</div>
+		</div>
 	);
 }

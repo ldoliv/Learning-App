@@ -47,7 +47,7 @@ const Form_3 = () => {
 			<form className="signup-form" onSubmit={handleSubmit(onSubmit)}>
 				<fieldset>
 					{renderCounter}
-					<h2 className="mb-4">Sign Up</h2>
+					<h2 className="mb-4">RHF - Sign Up</h2>
 
 					{/* Option 1 */}
 					{/* <Text1

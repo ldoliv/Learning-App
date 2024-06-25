@@ -14,7 +14,7 @@ export default function Home({routes}) {
 							<NavLink to={route.baseFolder}>{route.label}</NavLink>
 						</li>)}
 					</ul>
-				</nav>
+				</nav>			
 			</div>
 		</div>
 	)

@@ -107,13 +107,6 @@ export const reactRoutes = {
 			tags: []
 		},
 		{
-			desc: 'Tic Tac Toe',
-			output: '',
-			path: 'tic-tac-toe',
-			componentPath: 'tic-tac-toe',
-			tags: []
-		},
-		{
 			desc: 'Unit Testing',
 			output: '',
 			path: 'unit-testing',

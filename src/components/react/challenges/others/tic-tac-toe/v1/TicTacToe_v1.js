@@ -89,7 +89,7 @@ class Board extends React.Component {
 	}
 }
 
-export class TicTacToe extends React.Component {
+export default class TicTacToe extends React.Component {
 
 	constructor (props) {
 		super(props);

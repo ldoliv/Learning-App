@@ -5,7 +5,7 @@ import React, {useState, useContext} from 'react';
 
 // Using class comp
 const withToggleable = (Comp) => {
-	return class extends React.Comp {
+	return class extends React.Component {
 
 		constructor(props) {
 			super(props);
@@ -32,9 +32,9 @@ const withToggleable = (Comp) => {
 	}
 }
 
-// Using hooks !!! 😈
-const WithToggleable = (Comp) => {
-	return function Component(props) {		// must be like this with the word "function" and capital letter for the function
+// Using a function component !!! 😈
+const withToggleableFC = (Comp) => {
+	return (props) => {		// must be like this with the word "function" and capital letter for the function
 		const [show, setShow] = useState(false);
 
 		const toggle = () => setShow(show => !show);
@@ -61,7 +61,7 @@ function Menu(props) {
 }
 
 // const ToggleableMenu = withToggleable(Menu);
-const ToggleableMenu = WithToggleable(Menu);
+const ToggleableMenu = withToggleableFC(Menu);
 
 
 export default function Hocs() {

@@ -1,6 +1,8 @@
 import {useAuthContext, authActions} from '../contexts/AuthProvider';
 import {useState, useEffect} from 'react'
-import {useAxios} from '../services/axios/useAxios';
+import {useApiMethods} from './useApiMethods';
+// import {useAxios} from '../services/axios/useAxios';
+
 
 /*
 	Runs once:
@@ -14,7 +16,7 @@ import {useAxios} from '../services/axios/useAxios';
 
 export function usePersistLogin() {
 
-	const apiMethods = useAxios();
+	const apiMethods = useApiMethods();
 	const {auth, dispatch} = useAuthContext();
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -39,7 +41,9 @@ export function usePersistLogin() {
 			}
 		}
 
-		if (!auth.user?.accessToken) {
+		// if auth.user exists from session storage but not the token, try to get new tokens.
+		// Will work if the refresh token is still valid
+		if (auth.user && !auth.user?.accessToken) {
 			requestNewToken();
 		} else {
 			setIsLoading(false)

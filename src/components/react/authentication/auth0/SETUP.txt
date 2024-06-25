@@ -1,0 +1,8 @@
+
+
+1. Log in to Auth0 admin panel
+2. Applications -> Applications -> Create an App -> React type
+3. Then go to settings -> set all 3: Allowed callback urls / allowed logout urls / allowed web origins -> set to "http://localhost:3000"
+4. Save changes
+5. npm install @auth0/auth0-react
+6. Copy domain, client id to .env file

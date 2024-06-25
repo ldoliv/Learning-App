@@ -1,0 +1,32 @@
+.feedback-form {
+  padding: 16px;
+  width: 400px;
+}
+
+.feedback-form fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form label {
+  margin-right: 8px;
+}
+
+.feedback-form .Field {
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form .Row {
+  display: flex;
+  flex-direction: row;
+}
+
+.feedback-form label {
+  margin-bottom: 16px;
+}
+
+.feedback-form textarea {
+  height: 100px;
+}

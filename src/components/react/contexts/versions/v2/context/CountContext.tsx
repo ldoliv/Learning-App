@@ -62,7 +62,7 @@ function CountProvider({children}: ICounterProvider) {
 	)
 }
 
-function useCount() {
+function useCountContext() {
 	const context = React.useContext(counterContext);
 	if (!context) {
 		throw new Error('useCount must be used within a CountProvider')
@@ -71,4 +71,4 @@ function useCount() {
 }
 
 
-export {CountProvider, countActions, useCount}
+export {CountProvider, countActions, useCountContext}

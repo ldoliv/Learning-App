@@ -18,8 +18,22 @@ export const routes = [
 	{
 		path: 'v3-react-hook-form',
 		label: <>
-			React Hook Form - 
+			React Hook Form
 		</>,
 		componentFilename: 'v3-react-hook-form/Form_3',
+	},
+	{
+		path: 'v4-formik-v1',
+		label: <>
+			Formik v1
+		</>,
+		componentFilename: 'v4-formik-v1/Formik_v1',
+	},
+	{
+		path: 'v4-formik-v2',
+		label: <>
+			Formik v2
+		</>,
+		componentFilename: 'v4-formik-v2/Formik_v2',
 	},
 ];

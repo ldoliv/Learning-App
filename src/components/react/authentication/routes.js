@@ -15,11 +15,11 @@ export const routes = [
 		</>,
 		componentFilename: 'jwt-access-tokens-v2/Jwt',
 	},
-	{
-		path: 'auth0',
-		label: <>
-			Auth0
-		</>,
-		componentFilename: 'auth0/Auth0',
-	},
+	// {
+	// 	path: 'auth-zero',
+	// 	label: <>
+	// 		Auth0
+	// 	</>,
+	// 	componentFilename: 'auth-zero',
+	// },
 ];

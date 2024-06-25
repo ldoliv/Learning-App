@@ -14,5 +14,12 @@ export const routes = [
 		</>,
 		componentFilename: 'v2/v2.js'
 	},
+	{
+		path: 'v3',
+		label: <>
+			<p>V3 - React Context and components</p>
+		</>,
+		componentFilename: 'v3/Mc3.js'
+	},
 
 ];

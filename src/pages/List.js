@@ -2,6 +2,8 @@ import ReactDOMServer from 'react-dom/server'
 import {useState} from "react";
 import {NavLink} from "react-router-dom";
 import {useNavUp} from "contexts/RoutesContext";
+import LoginButton from 'components/react/authentication/auth0/components/LoginButton';
+import LogoutButton from 'components/react/authentication/auth0/components/LogoutButton';
 
 
 
@@ -54,6 +56,7 @@ export function List({routes}) {
 		<div className="questions py-4 px-1 px-sm-0">
 			<div className="container">
 				<div className="btn btn-outline-secondary mb-5" onClick={navUp}>Back</div>
+
 				<div className="search-ct mb-4">
 					<input className="form-control w-100" type="text" value={textSearch} onChange={handleTextSearch} placeholder="Search..." />
 				</div>

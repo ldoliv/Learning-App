@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {useAxios} from '../services/axios/useAxios';
 import {useAuthContext, authActions} from '../contexts/AuthProvider';
+// import {useAxios} from '../services/axios/useAxios';
+import {useApiMethods} from '../hooks/useApiMethods';
 
 
 
 export default function TasksPage() {
 
-	const apiMethods = useAxios();
+	const apiMethods = useApiMethods();
 	const {auth, dispatch} = useAuthContext();
 	const {authenticated, user, error} = auth;
 	const [tasks, setTasks] = useState(null);

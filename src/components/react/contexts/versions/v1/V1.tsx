@@ -1,12 +1,12 @@
 import React from 'react'
-import {CountProvider, useCount, increment} from './context/CountContext';
+import {CountProvider, useCountContext, increment} from './context/CountContext';
 import { useRenderCounter } from 'components/react/hooks/use-render-counter/UseRenderCounter';
 
 
 function Count() {
 
 	const RenderCount = useRenderCounter();
-	const {count} = useCount();
+	const {count} = useCountContext();
 	
 	return (
 		<div className='mb-2'>{RenderCount} Count: {count}</div>
@@ -17,7 +17,7 @@ function Count() {
 function Button() {
 
 	const RenderCount = useRenderCounter();
-	const {dispatch} = useCount();
+	const {dispatch} = useCountContext();
 
 	function handleClick() {
 		increment(dispatch)

@@ -35,7 +35,7 @@ function Toggleable(props) {
 
 
 // HOC
-function WithToggleable(Comp) {
+function withToggleable(Comp) {
 	return (props) => {	// returns a function
 		return (		// equivalent class render method
 			<Toggleable>
@@ -53,7 +53,7 @@ function WithToggleable(Comp) {
 	}
 }
 
-const ToggleableMenu = WithToggleable(Menu);
+const ToggleableMenu = withToggleable(Menu);
 
 
 
