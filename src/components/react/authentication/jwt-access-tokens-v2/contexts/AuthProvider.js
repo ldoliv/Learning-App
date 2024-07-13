@@ -49,16 +49,8 @@ export function AuthProvider(props) {
 	// console.log(value);
 
 	// 🥇 deal with side effects here, the so called "middleware"
-	useEffect(() => {
-		if (auth.authenticated) {
-			const {accessToken, ...rest} = auth.user;
-			saveUser(rest);
-		} else {
-			removeUser();
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [auth.authenticated]);
-	// ----------------------------------------------------------
+	useUserStorage(auth);
+	
 
 	return (
 		<AuthContext.Provider {...props} value={value} />
@@ -71,4 +63,16 @@ export function useAuthContext() {
 		throw new Error('Must be used within AuthProvider');
 	}
 	return context;
+}
+
+function useUserStorage(auth) {
+	useEffect(() => {
+		if (auth.authenticated) {
+			const {accessToken, ...rest} = auth.user;
+			saveUser(rest);
+		} else {
+			removeUser();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [auth.authenticated]);
 }

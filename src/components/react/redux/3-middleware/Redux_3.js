@@ -1,6 +1,6 @@
 // import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
 import React, {useEffect} from "react";
-import {configureStore} from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {Provider, useDispatch, useSelector} from 'react-redux';
 
 
@@ -48,17 +48,17 @@ const asyncDataReducer = (state = defaultState, action) => {
 	}
 };
 
-// 💰 If your Redux store had more slices or reducers, you would need to specify which part of the state you are interested in.For example, if you had a state structure like this:
-// const rootReducer = combineReducers({
-// 	asyncData: asyncDataReducer,
-// 	anotherSlice: anotherReducer,
-// });
+// 💰 If your Redux store had more slices or reducers, you would need to specify which part of the state you are interested in. For example, if you had a state structure like this:
+const rootReducer = combineReducers({
+	asyncData: asyncDataReducer,
+	// anotherSlice: anotherReducer,
+});
 
 // Configure store with thunk middleware
 // 💰 It seems @reduxjs/toolkit already comes with thunk middleware
 const store = configureStore({
-	reducer: asyncDataReducer,
-	// reducer: rootReducer,
+	// reducer: asyncDataReducer,
+	reducer: rootReducer,
 	// middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
 
@@ -66,8 +66,8 @@ const store = configureStore({
 // React component
 const ReduxComponent = () => {
 	const dispatch = useDispatch();
-	const {fetching, users} = useSelector((state) => state);
-	// const {fetching, users} = useSelector((state) => state.asyncData); // 💰
+	// const {fetching, users} = useSelector((state) => state);
+	const {fetching, users} = useSelector((state) => state.asyncData); // 💰
 
 
 	// useEffect(() => {

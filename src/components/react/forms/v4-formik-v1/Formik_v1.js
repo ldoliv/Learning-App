@@ -32,12 +32,14 @@ export default function Formik_v1() {
 				<fieldset>
 					<h2 className="mb-4">Formik - Sign Up</h2>
 
+					{/* 👉 Here I'm making use of getFieldProps that spread the onBlur and onChange and other properties */}
 					<div className="form-field">
 						<label htmlFor="username" className="form-label">Username <sup>*</sup></label>
 						<input type="text" className={`form-control ${touched.username && errors.username ? 'is-invalid' : ''}`} id="username" {...getFieldProps('username')} />
 						{touched.username && errors.username && <div className="invalid-feedback">{errors.username}</div>}
 					</div>
 
+					{/* 👉 Here I'm explicitly using Formiks event handlers for onBlur and onChange */}
 					<div className="form-field">
 						<label htmlFor="email" className="form-label">Email address <sup>*</sup></label>
 						<input type="text" className={`form-control ${touched.email && errors.email ? 'is-invalid' : ''}`} id="email" name="email" onChange={handleChange} onBlur={handleBlur} value={formValues.email} />

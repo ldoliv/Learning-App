@@ -5,13 +5,14 @@ import {useApiMethods} from './useApiMethods';
 
 
 /*
-	Runs once:
-	if refresh token is valid
-		returns access token and renovates refresh token
-		update access token in state
-	else
-		if user still in session storage
-			properly logout with session expired message
+	Runs once on app init
+	if user exists in session storage but not the access token (for security reasons) then try to get new access and refresh tokens by callin requestNewToken()
+		if refresh token is valid
+			returns access token and renovates refresh token
+			update access token in state
+		else
+			if user still in session storage
+				properly logout with session expired message
 */
 
 export function usePersistLogin() {

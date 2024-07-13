@@ -51,11 +51,10 @@ export function useAxiosPrivate() {
 						// console.log('refreshErr: %o', refreshErr);
 						try {
 
-							const responseData = await publicRequest.post('/logout', {}, {
+							await publicRequest.post('/logout', {}, {
 								withCredentials: true
 							});
 							dispatch(authActions.logout(new Error('Your session has expired, please log in again.')));
-							return responseData;
 
 						} catch (logoutErr) {
 							return handleError(logoutErr);

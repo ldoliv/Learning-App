@@ -11,6 +11,7 @@ export const handleError = (error) => {
 
 // Create a custom Axios instance
 export const createAxiosInstance = (opts = {}) => {
+	
 	const defaultGlobal = {
 		baseURL: '',
 		useAuthentication: false,

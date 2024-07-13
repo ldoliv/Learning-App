@@ -1421,8 +1421,9 @@ Using a arrow function has drawbacks
 			desc: (
 				<>
 					<ul>
-						<li>ES6 Modules - import / export</li>
-						<li>CommonJS - Is mostly used in a Node.js environment</li>
+						<li>ES6 Modules - uses "import" and "export"</li>
+						<li>CommonJS - Is mostly used in a Node.js environment, uses "require" and "module.exports"</li>
+						<li>AMD - Uses "require" and "define"</li>
 					</ul>
 				</>
 			),

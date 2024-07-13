@@ -9,7 +9,7 @@ export function useRenderCounter() {
     ref.current.textContent = Number(ref.current.textContent || '0') + 1;
     ref.current.style.backgroundColor = '#00e557';
 
-    const timer = setTimeout(() => {
+    let timer = setTimeout(() => {
       ref.current.style.backgroundColor = '#fff';
     }, 150);
 

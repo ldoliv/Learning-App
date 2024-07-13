@@ -144,6 +144,13 @@ export const reactRoutes = {
 			tags: ['Patterns']
 		},
 		{
+			desc: 'Hook - Use Scroll Direction',
+			output: '',
+			path: 'hooks/use-scroll-direction',
+			componentPath: 'hooks/use-scroll-direction',
+			tags: ['Hooks']
+		},
+		{
 			desc: 'Hook - Use Shared State',
 			output: '',
 			path: 'hooks/use-shared-state',
