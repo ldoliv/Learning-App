@@ -1,10 +1,10 @@
 import React, {useLayoutEffect, useMemo, useRef, useCallback} from "react";
 
 export function useMounted() {
-  const mountedRef = useRef(null);
+  const mountedRef = useRef(true);
 
   useLayoutEffect(() => {
-    mountedRef.current = true;
+    // mountedRef.current = true;
     return () => {
       mountedRef.current = false;
     }

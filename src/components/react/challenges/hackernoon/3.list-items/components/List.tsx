@@ -25,8 +25,8 @@ function List() {
 	return (
 		<div>
 			<TextInput onClick={addItem} />
-			<div>{items.map((item, index) =>
-				<ListItem key={index} text={item} onClick={deleteItem(index)} />)}
+			<div>{items.map((item, idx) =>
+				<ListItem key={idx} text={item} onClick={deleteItem(idx)} />)}
 			</div>
 	  </div>
   )

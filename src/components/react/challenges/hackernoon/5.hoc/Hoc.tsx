@@ -30,7 +30,7 @@ function IncrementHOC<P extends object>(
 	increment: number = 1
 ) {
 	return function Component(props: P & IncrementHOCProps) {
-		const {initValue = 0, ...rest} = props;
+		const {initValue = 0, ...rest} = props;			// "initValue" is a specific prop only for the hoc Component, it's filtered out and not passed to Comp
 		const [count, setCount] = useState(initValue);
 
 		const handleClick = () => setCount(count + increment);

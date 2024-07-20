@@ -45,6 +45,7 @@ export default function Counter() {
 			<div className='mb-3'>{RenderCount} Parent
 				<button className='ms-3' onClick={() => update({})}>Force Update</button>
 			</div>
+			
 			<CountProvider>
 				<Count />
 				<Button />

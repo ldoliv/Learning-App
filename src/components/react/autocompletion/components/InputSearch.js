@@ -16,7 +16,7 @@ function InputSearch(props) {
 	return (
 		<div className={searchContainer} >
 			{/* {renderCount} */}
-			<input type="text" className="input" value={props.value} onChange={handleChange} />
+			<input type="text" className="input" onChange={handleChange} value={props.value} />
 		</div>
 	)
 }

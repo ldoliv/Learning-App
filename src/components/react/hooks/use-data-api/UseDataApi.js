@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useReducer} from 'react';
+import {useState, useEffect, useReducer} from 'react';
 import axios from 'axios';
 
 
@@ -32,7 +32,7 @@ export const useDataApi = (initialUrl, initialData) => {
 	});
 
 	useEffect(() => {
-		let isMounted = false;
+		let isMounted = true;
 
 		const fetchData = async () => {
 			dispatch({type: 'FETCH_INIT'});
@@ -40,24 +40,24 @@ export const useDataApi = (initialUrl, initialData) => {
 			try {
 				const result = await axios(url);
 
-				if (!isMounted) {
+				if (isMounted) {
 					dispatch({type: 'FETCH_SUCCESS', payload: result.data});
 				}
 
 			} catch (error) {
 				
-				if (!isMounted) {
+				if (isMounted) {
 					dispatch({type: 'FETCH_FAILURE'});
 				}
 			}
 		};
 
-		if (url) {
+		if (isMounted && url) {
 			fetchData();
 		}
 
 		return () => {
-			isMounted = true;
+			isMounted = false;
 		};
 
 	}, [url]);

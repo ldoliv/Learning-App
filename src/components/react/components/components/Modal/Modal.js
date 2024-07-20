@@ -8,27 +8,27 @@ import './Modal.styles.scss';
 
 const Portal = memo(({parentSelector, children}) => {
 
-	const el = useRef(document.querySelector(parentSelector) || document.createElement('div'));
+	const container = useRef(document.querySelector(parentSelector) || document.createElement('div'));
 
 	// dynamic is true if the element is created, because it will have no parent
-	const [dynamic] = useState(!el.current.parentElement);
+	const [created] = useState(!container.current.parentElement);
 
 	useEffect(() => {
 
 		// if the element was created append to body
-		if (dynamic) {
-			el.current.id = 'portal-container';
-			document.body.appendChild(el.current);
+		if (created) {
+			container.current.id = 'portal-container';
+			document.body.appendChild(container.current);
 		}
 
 		return () => {
-			if (dynamic && el.current.parentElement) {
-				el.current.parentElement.removeChild(el.current);
+			if (created && container.current.parentElement) {
+				container.current.parentElement.removeChild(container.current);
 			}
 		}
 	}, [parentSelector])
 
-	return createPortal(children, el.current);
+	return createPortal(children, container.current);
 });
 
 /*

@@ -52,7 +52,7 @@ function Board(props) {
 			<div key={`row${rowIdx}`} className="board-row">
 				{[0, 1, 2].map(colIdx => {
 					const id = index++;
-					const player = history[step][id];
+					const player = history[step][id];	// 'X' or 'O'
 					return (
 						<Square key={`square${id}`} id={id} player={player} />
 					)
@@ -109,14 +109,14 @@ function createActions(reducerMap) {
 	}, {});
 }
 // Reducer
-function reducer(reducerMap) {
+function createReducer(reducerMap) {
 	return (state, {type, payload}) => {
 		const handler = reducerMap[type];
 		return handler ? handler(state, payload) : state;
 	}
 }
-function createReducer(reducerMap) {
-	return [createActions(reducerMap), reducer(reducerMap)];
+function createReducerTuple(reducerMap) {
+	return [createActions(reducerMap), createReducer(reducerMap)];
 }
 
 // ------------------------------------------------------------------
@@ -133,7 +133,8 @@ const gameReducerMap = {
 			const newBoard = [...board];
 			newBoard[id] = next;
 
-			const newHistory = history.slice(0, step + 1);
+			const newHistory = history.slice(0, step + 1);			// step + 1 is here because you can have 6 boards in history and go back to say 3rd board
+			// console.log(newHistory);
 			newHistory.push(newBoard);
 
 			const winner = calcWinner(newBoard);
@@ -160,13 +161,13 @@ const gameReducerMap = {
 	},
 }
 
-const [gameActions, gameReducer] = createReducer(gameReducerMap);
+const [gameActions, gameReducer] = createReducerTuple(gameReducerMap);
 
 
-const gameContext = React.createContext();
+const GameContext = React.createContext();
 
 function useGame() {
-	const context = React.useContext(gameContext);
+	const context = React.useContext(GameContext);
 	if (!context) {
 		throw new Error('To be used in game Provider');
 	}
@@ -175,7 +176,7 @@ function useGame() {
 
 
 function GameProvider({children}) {
-	const reducer = React.useReducer(gameReducer, {
+	const state = React.useReducer(gameReducer, {
 		history: [Array(9).fill(null)],
 		step: 0,
 		next: 'X',
@@ -183,9 +184,9 @@ function GameProvider({children}) {
 	});
 
 	return (
-		<gameContext.Provider value={reducer}>
+		<GameContext.Provider value={state}>
 			{children}
-		</gameContext.Provider>
+		</GameContext.Provider>
 	)
 }
 

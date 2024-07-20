@@ -38,12 +38,12 @@ function useDataApi(initialData) {
 				}
 			} catch (error) {
 				if (mounted) {
-					setState(state => ({loading: false, data: null, error: new Error(error)}));
+					setState(state => ({loading: false, data: null, error: error instanceof Error ? error : new Error(String(error))}));
 				}
 			}
 		}
 
-		if (url) {
+		if (mounted && url) {
 			request(url);
 		}
 

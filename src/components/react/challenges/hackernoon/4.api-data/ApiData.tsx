@@ -14,29 +14,29 @@ function useDataApi<T>(defaultVal: T[]) {
 
 	
 	React.useEffect(() => {
-		let canceled = false
+		let isMounted = true
 
 		const request = async (url: string) => {
 			try {
 				const {data} = await axios.get(url);
 
-				if (!canceled) {
+				if (isMounted) {
 					setResponse({data, error: null});
 				}
 			} catch (error: any) {
-				if (!canceled) {
+				if (isMounted) {
 					setResponse({data: [], error});
 					// throw error;
 				}
 			}
 		}
 
-		if (url && !canceled) {
+		if (isMounted && url) {
 			request(url)
 		}
 
 		return () => {
-			canceled = true
+			isMounted = false
 		}
 		
 	}, [url])
@@ -73,7 +73,10 @@ export default function ApiData() {
 	// const [data, setData] = React.useState<dataI[]>([]);
 
 	React.useEffect(() => {
-		setUrl('https://jsonplaceholder.typicode.com/posts/1/comments')
+
+		setTimeout(() => {
+			setUrl('https://jsonplaceholder.typicode.com/posts/1/comments')
+		}, 1000)
 
 		// request('https://jsonplaceholder.typicode.com/posts/1/commentss')
 		// 	.then(data => {
@@ -84,7 +87,7 @@ export default function ApiData() {
 	
 
 	if (error) return <div>{error.message}</div>
-	if (!data.length) return null;
+	if (!data.length) return <div>Loading...</div>;
 
 	return (
 		<div>{

@@ -13,7 +13,7 @@ type contextT = {
 	dispatch: React.Dispatch<actionT<actionKeys, PayloadT>>
 } | null
 
-const counterContext = React.createContext<contextT>(null);
+const CounterContext = React.createContext<contextT>(null);
 
 
 
@@ -56,16 +56,16 @@ function CountProvider({children}: ICounterProvider) {
 	const value = {count, dispatch};
 		
 	return (
-		<counterContext.Provider value={value}>
+		<CounterContext.Provider value={value}>
 			{children}
-		</counterContext.Provider>
+		</CounterContext.Provider>
 	)
 }
 
 function useCountContext() {
-	const context = React.useContext(counterContext);
+	const context = React.useContext(CounterContext);
 	if (!context) {
-		throw new Error('useCount must be used within a CountProvider')
+		throw new Error('useCountContext must be used within a CountProvider')
 	}
 	return context;
 }
