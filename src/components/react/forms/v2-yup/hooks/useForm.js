@@ -1,6 +1,6 @@
 // hooks/useForm.js
 import {useState, useCallback} from 'react';
-import useSessionStorage from 'components/react/hooks/use-session-storage/useLocalStorage';
+import useSessionStorage from 'components/react/hooks/useSessionStorage/useLocalStorage';
 
 const useForm = (formId, initialState, validationSchema) => {
 	const [formValues, setFormValues] = useSessionStorage(formId, initialState);

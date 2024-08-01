@@ -1,5 +1,5 @@
 import React, {memo, useState, useCallback} from "react";
-import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
+import {useRenderCounter} from 'components/react/hooks/useRenderCounter/UseRenderCounter';
 
 /*
 	https://blog.bitsrc.io/how-to-make-your-react-application-even-faster-3efe9387cbb1

@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
 // import lodash from 'lodash';
 import debounce from 'lodash.debounce';
-import {useDataApi} from '../../hooks/use-data-api/UseDataApi';
+import {useDataApi} from '../../hooks/useDataApi/UseDataApi';
 import InputSearch from '../components/InputSearch';
 import List from '../components/List';
 

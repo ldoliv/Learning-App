@@ -3,7 +3,7 @@ import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import debounce from 'lodash.debounce';
 import InputSearch from '../components/InputSearch';
 import List from '../components/List';
-import { useMounted } from 'components/react/hooks/use-mounted/useMounted';
+import { useMounted } from 'components/react/hooks/useMounted/useMounted';
 
 
 const ITEMS_API_URL = 'https://dummyjson.com/products/search';

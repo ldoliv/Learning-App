@@ -93,3 +93,7 @@ nav {
 .list-tags {
    font-size: 14px;
 }
+
+.btn.disabled, .btn:disabled {
+  opacity: 0.45;
+}

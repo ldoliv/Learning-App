@@ -1,6 +1,6 @@
 import React, {useState, memo, useMemo} from 'react';
 import {AppProvider, useAppContext} from './context/AppContext';
-import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
+import {useRenderCounter} from 'components/react/hooks/useRenderCounter/UseRenderCounter';
 
 
 /*

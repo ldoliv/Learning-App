@@ -8,7 +8,7 @@ import Checkbox from './components/Checkbox';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {delay} from 'helpers';
-import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
+import {useRenderCounter} from 'components/react/hooks/useRenderCounter/UseRenderCounter';
 
 
 const initialState = {

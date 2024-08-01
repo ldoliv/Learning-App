@@ -15,6 +15,15 @@ export const reactRoutes = {
 		},
 		{
 			desc: <>
+				Hooks
+			</>,
+			output: '',
+			path: 'hooks',
+			componentPath: 'hooks',
+			tags: ['Hooks']
+		},
+		{
+			desc: <>
 				Basics
 			</>,
 			output: '',
@@ -144,73 +153,6 @@ export const reactRoutes = {
 			tags: ['Patterns']
 		},
 		{
-			desc: 'Hook - Use Scroll Direction',
-			output: '',
-			path: 'hooks/use-scroll-direction',
-			componentPath: 'hooks/use-scroll-direction',
-			tags: ['Hooks']
-		},
-		{
-			desc: 'Hook - Use Shared State',
-			output: '',
-			path: 'hooks/use-shared-state',
-			componentPath: 'hooks/use-shared-state',
-			tags: ['Hooks']
-		},
-		{
-			desc: 'Hook - Use Previous',
-			output: '',
-			path: 'hooks/use-previous',
-			componentPath: 'hooks/use-previous',
-			tags: ['Hooks']
-		},
-		{
-			desc: 'Hook - Use Update',
-			output: '',
-			path: 'hooks/use-update',
-			componentPath: 'hooks/use-update',
-			tags: ['Hooks']
-		},
-		{
-			desc: <>
-				Hook - useRenderCounter()
-				<ul>
-					<li>Provides a count that increments every time the component rerenders.</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'hooks/use-render-counter',
-			componentPath: 'hooks/use-render-counter',
-			tags: ['Hooks']
-		},
-		{
-			desc: <>
-				Hook - useAsync()
-				<ul>
-					<li>Can be used with any async function.</li>
-					<li>State returns status, data, error and run().</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'hooks/use-async',
-			componentPath: 'hooks/use-async',
-			tags: ['Hooks']
-		},
-		{
-			desc: <>
-				Hook - useApi()
-				<ul>
-					<li>Handles component mount and unmount.</li>
-					<li>Is initalized with an object containing async methods</li>
-					<li>Methods are wrapped in hof and status, data and error is then returned by the hook</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'hooks/use-api',
-			componentPath: 'hooks/use-api',
-			tags: ['Hooks']
-		},
-		{
 			desc: <>
 				Global State
 			</>,
@@ -218,31 +160,6 @@ export const reactRoutes = {
 			path: 'global-state',
 			componentPath: 'global-state',
 			tags: ['React']
-		},
-		{
-			desc: <>
-				Hook - useMounted()
-				<ul>
-					<li>Useful to know if a component is still mounted.</li>
-					<li>Used for stoping state update when the component is no longer mounted.</li>
-				</ul>
-			</>,
-			output: '',
-			path: 'hooks/use-mounted',
-			componentPath: 'hooks/use-mounted',
-			tags: ['Hooks']
-		},
-		{
-			desc: <>
-				Hook - useMedia()
-				<ul>
-					<li>Returns true/false if the viewport is within the passed media query string. </li>
-				</ul>
-			</>,
-			output: '',
-			path: 'hooks/use-media',
-			componentPath: 'hooks/use-media',
-			tags: ['Hooks']
 		},
 		{
 			desc: <>

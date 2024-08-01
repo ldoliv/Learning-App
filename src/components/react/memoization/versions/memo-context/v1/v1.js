@@ -1,6 +1,6 @@
 import React, {memo} from 'react'
 import {CountProvider, useCount} from './count-context'
-import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
+import {useRenderCounter} from 'components/react/hooks/useRenderCounter/UseRenderCounter';
 
 /*
 	https://github.com/kentcdodds/old-kentcdodds.com/blob/319db97260078ea4c263e75166f05e2cea21ccd1/content/blog/how-to-optimize-your-context-value/index.md

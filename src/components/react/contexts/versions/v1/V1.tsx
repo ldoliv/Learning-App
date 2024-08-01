@@ -1,6 +1,6 @@
 import React from 'react'
 import {CountProvider, useCountContext, increment} from './context/CountContext';
-import { useRenderCounter } from 'components/react/hooks/use-render-counter/UseRenderCounter';
+import { useRenderCounter } from 'components/react/hooks/useRenderCounter/UseRenderCounter';
 
 
 function Count() {

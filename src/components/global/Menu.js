@@ -5,7 +5,7 @@ export function Menu({routes}) {
 		<>
 			<nav>
 				<ul>
-					{routes.map(route => <li key={route.path}>
+					{routes.map((route, idx) => <li className={`${route.path}_${idx}`} key={`${route.path}_${idx}`}>
 						<NavLink to={route.path}>{route.label}</NavLink>
 					</li>)}
 					{/* <NavLink to="/current">Current</NavLink> */}

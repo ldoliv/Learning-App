@@ -1,7 +1,7 @@
 import {useState} from "react";
 import './assets/styles.css';
 import {signupSchema} from "./schemas/signupSchema";
-import useSessionStorage from "components/react/hooks/use-session-storage/useLocalStorage";
+import useSessionStorage from "components/react/hooks/useSessionStorage/useLocalStorage";
 import {Formik, Field, Form, ErrorMessage} from "formik";
 import Text from './components/Text';
 import Select from "./components/Select";

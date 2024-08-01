@@ -1,4 +1,4 @@
-import {createState, useState} from 'state-pool';
+import {createState} from 'state-pool';
 import Dashboard from './components/Dashboard';
 import Display from './components/Display';
 
@@ -15,6 +15,3 @@ export default function StatePool_1() {
 		</div>
 	);
 }
-
-
-

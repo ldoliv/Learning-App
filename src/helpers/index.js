@@ -64,3 +64,26 @@ export function getTags(questions) {
 }
 
 export const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+
+export function debounce(callback, delay) {
+	let timer = null;
+	return function(...args) {
+		clearTimeout(timer);
+		timer = setTimeout(() => {
+			callback.apply(this, args);
+		}, delay);
+	}
+}
+
+export function throttle(callback, limit) {
+	let timer = null;
+	return function(...args) {
+		if (!timer) {
+			callback.apply(this, args);
+			timer = setTimeout(() => {
+				timer = null;
+			}, limit);
+		}
+	}
+}

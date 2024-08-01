@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react"
+import React  from "react"
 import IncrementBy2 from './components/IncBy2';
 import IncrementBy20 from './components/IncBy20';
 import IncrementBy200 from './components/IncBy200';

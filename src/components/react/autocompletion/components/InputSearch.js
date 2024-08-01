@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import {useRenderCounter} from 'components/react/hooks/use-render-counter/UseRenderCounter';
+import {useRenderCounter} from 'components/react/hooks/useRenderCounter/UseRenderCounter';
 
 
 function InputSearch(props) {
