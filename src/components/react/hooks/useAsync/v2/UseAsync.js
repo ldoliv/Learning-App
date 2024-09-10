@@ -1,5 +1,6 @@
 import {useState, useCallback, useRef, useLayoutEffect} from 'react';
 
+
 const STATUS = {
 	IDLE: 'IDLE',
 	PENDING: 'PENDING',
@@ -16,83 +17,88 @@ function getStatus(status) {
 	};
 }
 
-function useAsync(initialAsyncFunction = null, options = {withState: true}) {
+function useAsync(asyncFn = null, options = {}) {
+
+	const opts = {
+		withState: true,
+		delay: 0,
+		failRate: 0,
+		abortRequest: false,
+		...options
+	}
+
 	const [state, setState] = useState({
 		status: getStatus(STATUS.IDLE),
 		data: null,
 		error: null
 	});
-
-	const mountedRef = useRef(true);
+	const mounted = useRef(true);
 	const abortController = useRef(null);
 
 	useLayoutEffect(() => {
 		return () => {
-			mountedRef.current = false;
+			mounted.current = false;
 			if (abortController.current) {
 				abortController.current.abort('Request aborted, component unmounted');
 			}
 		};
 	}, []);
 
-	const callAsyncWithState = useCallback(
+	const asyncHOF = useCallback(
 		async (...args) => {
 
-			if (!initialAsyncFunction) {
+			if (!asyncFn) {
 				throw new Error('No async function provided');
 			}
 
-			const controller = new AbortController();
-			abortController.current = controller;
-
-			setState(prevState => ({status: getStatus(STATUS.PENDING), data: prevState.data, error: prevState.error}));
-
 			try {
-				const result = await initialAsyncFunction(...args, controller.signal);
-				if (mountedRef.current) {
-					setState({status: getStatus(STATUS.RESOLVED), data: result, error: null});
+				abortController.current = opts.abortRequest ? new AbortController() : null;
+
+				if (opts.withState) {
+					setState(prevState => ({...prevState, status: getStatus(STATUS.PENDING)}));
 				}
-			} catch (err) {
-				console.log(err);
-				if (mountedRef.current) {
-					setState({status: getStatus(STATUS.REJECTED), data: null, error: err});
+
+				await simulateConditions(opts.delay, opts.failRate);
+
+				let result = null;
+
+				if (opts.abortRequest) {
+					if (isObject(args[0])) {
+						args[0].signal = abortController.current.signal;
+						result = await asyncFn(...args);
+					} else {
+						result = await asyncFn(...args, {signal: abortController.current.signal});
+					}
+				} else {
+					result = await asyncFn(...args);
+				}
+
+				if (mounted.current) {
+					if (opts.withState) {
+						setState({status: getStatus(STATUS.RESOLVED), data: result, error: null});
+					} else {
+						return result;
+					}
+				}
+			} catch (error) {
+				console.log(error);
+				if (mounted.current) {
+					if (opts.withState) {
+						setState({status: getStatus(STATUS.REJECTED), data: null, error: error instanceof Error ? error : toErrorInstance(error)});
+					} else {
+						throw error instanceof Error ? error : toErrorInstance(error);
+					}
 				}
 			} finally {
 				abortController.current = null;
 			}
 		},
-		[initialAsyncFunction]
-	);
-
-	const callAsyncWithPromise = useCallback(
-		async (...args) => {
-			if (!initialAsyncFunction) {
-				throw new Error('No async function provided');
-			}
-
-			const controller = new AbortController();
-			abortController.current = controller;
-
-			try {
-				const result = await initialAsyncFunction(...args, controller.signal);
-				if (mountedRef.current) {
-					return result;
-				}
-			} catch (err) {
-				if (mountedRef.current) {
-					throw err;
-				}
-
-			} finally {
-				abortController.current = null;
-			}
-		},
-		[initialAsyncFunction]
+		[asyncFn, opts.delay, opts.failRate, opts.abortRequest, opts.withState]
 	);
 
 	const reset = useCallback(() => {
 		if (abortController.current) {
-			abortController.current.abort('reset, cancelled any pending requests');
+			abortController.current.abort('reset, cancelled pending requests');
 		}
 		setState({
 			status: getStatus(STATUS.IDLE),
@@ -101,7 +107,44 @@ function useAsync(initialAsyncFunction = null, options = {withState: true}) {
 		});
 	}, []);
 
-	return options.withState ? [state, callAsyncWithState, reset] : [callAsyncWithPromise];
+	return opts.withState ? [state, asyncHOF, reset] : [asyncHOF];
 }
+
+
+function toErrorInstance(e) {
+	if (e instanceof Error) {
+		return e;
+	}
+
+	// This part here is for dealing with unhandled errors that are not instances of Error
+	let message = 'An unknown error occurred';
+	if (typeof e === 'string') {
+		message = e;
+	} else if (typeof e === 'number') {
+		message = `Error code: ${e}`;
+	} else if (typeof e === 'object' && e !== null) {
+		if (e.message) {
+			message = e.message;
+		} else {
+			try {
+				message = JSON.stringify(e);
+			} catch (jsonError) {
+				message = 'An error occurred, but it could not be stringified';
+			}
+		}
+	}
+	return new Error(message);
+}
+
+function isObject(value) {
+	return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+const simulateConditions = async (delayT, failRate) => {
+	if (delayT) await delay(delayT);
+	if (failRate > Math.random()) throw new Error('Forced fail');
+};
 
 export {useAsync};

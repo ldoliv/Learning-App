@@ -10,7 +10,7 @@ function generateRange(current = 0, length = 3, min = 0, max = 1000) {
 		start = Math.max(end - (length - 1), min);
 	}
 
-	return Array.from({length: end - start + 1}, (_, i) => start + i);
+	return Array.from({length: end - start + 1}, (_, i) => start + i);		// length: end - start + 1 -> +1 because it's zero based and so to compensate, ex: 3 - 0 = 3 but the length must be 4 so 3 - 0 + 1 = 4
 }
 
 // Custom hook for pagination logic

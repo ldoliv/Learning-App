@@ -36,10 +36,10 @@ function useDataAPI<T>(initialData: Data<T>): UseDataApiReturnType<T> {
 	useEffect(() => {
 		let mounted = true;
 
-		const fetchData = async (url: string) => {
+		const fetchData = async () => {
 			setState(state => ({...state, loading: true}));
 			try {
-				const response = await fetch(url);
+				const response = await fetch(url as string);
 				if (mounted) {
 					if (response.ok) {
 						const jsonData = await response.json();
@@ -56,7 +56,9 @@ function useDataAPI<T>(initialData: Data<T>): UseDataApiReturnType<T> {
 			}
 		};
 
-		if (url) fetchData(url);
+		if (url) {
+			fetchData();
+		} 
 
 		return () => {
 			mounted = false;

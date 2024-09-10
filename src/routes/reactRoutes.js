@@ -42,6 +42,15 @@ export const reactRoutes = {
 		},
 		{
 			desc: <>
+				Requests
+			</>,
+			output: '',
+			path: 'requests',
+			componentPath: 'requests/Requests',
+			tags: ['React']
+		},
+		{
+			desc: <>
 				Authentication
 			</>,
 			output: '',

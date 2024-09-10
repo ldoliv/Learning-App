@@ -1153,6 +1153,9 @@ logNow("INFO", "message"); // [HH:mm] INFO message
 		answ: {
 			desc: (
 				<>
+					<p>In React, testing components is streamlined with React Testing Library and Jest DOM. React Testing Library helps you render components and interact with them as a user would, while Jest DOM extends Jest's "expect" function with custom matchers for better assertions. For instance, you can verify that an element is present in the DOM using expect(element).toBeInTheDocument(). Together, these tools make it easier to write clear and maintainable tests that closely mimic user behavior.</p>
+					<p>With create react app, the setupTest.js file is loaded before running tests, imports jest-dom.</p>
+					<p>For more information refer to: https://create-react-app.dev/docs/running-tests/</p>
 					<p>
 						For checking if an element isn't there initially assert with <b>queryBy</b> and expecting it to be null.
 					</p>
@@ -1226,7 +1229,7 @@ screen.getByDisplayValue('Oliveira')
 		answ: {
 			desc: (
 				<>
-					<p>You can do assertions with the expect function taking a value as parameter, and calling an assertion method.</p>
+					<p>You can do assertions with the "expect" function that comes from Jest DOM, taking a value as parameter, and calling an assertion method.</p>
 					<p>Assertion methods usually start with "to". Some examples:</p>
 					<ul>
 						<li>toBeDisabled()</li>

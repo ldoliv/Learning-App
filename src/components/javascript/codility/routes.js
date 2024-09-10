@@ -7,5 +7,4 @@ export const routes = [
 		</>,
 		componentFilename: '0-sample-challenge/SampleChallenge'
 	},
-
 ];

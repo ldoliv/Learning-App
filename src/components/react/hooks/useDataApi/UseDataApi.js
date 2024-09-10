@@ -52,7 +52,7 @@ export const useDataApi = (initialUrl, initialData) => {
 			}
 		};
 
-		if (isMounted && url) {
+		if (url) {
 			fetchData();
 		}
 

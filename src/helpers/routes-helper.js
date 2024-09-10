@@ -64,7 +64,10 @@ export function getDynamicRoutes(mainRoutes = []) {
 export function generateDynamicRoutes({routes = [], baseFolder = ''}) {
 
 	const dRoutes = routes.map(route => {
+		// const CompPath = `components/${baseFolder}/${route.componentFilename}`;
+		// console.log("component path: %o", CompPath);
 		const Component = lazy(() => import(`components/${baseFolder}/${route.componentFilename}`));
+		// const Component = import(`components/${baseFolder}/${route.componentFilename}`);
 
 		return {
 			path: route.path,

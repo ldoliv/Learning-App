@@ -1,7 +1,7 @@
 import {fireEvent, render, screen, queryByAttribute} from "@testing-library/react";
 import FeedbackForm from "../FeedbackForm";
 
-// You can use the chrome extension Testing Playground to see the best method to use to get an element. Panel shows in devtools
+// 🔥 You can use the chrome extension Testing Playground to see the best method to use to get an element. Panel shows in devtools
 // https://chromewebstore.google.com/detail/testing-playground/hejbmebodbijjdhflfknehhcgaklhano
 
 

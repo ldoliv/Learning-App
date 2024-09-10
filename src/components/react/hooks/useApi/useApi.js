@@ -24,6 +24,7 @@ function getStatus(status) {
 }
 
 function useApi(apiMethods) {
+
 	const [apiState, setState] = useState(() => {
 		const initialState = {};
 		for (const method in apiMethods) {
@@ -57,7 +58,7 @@ function useApi(apiMethods) {
 
 			setState(prevState => ({
 				...prevState,
-				[methodName]: {status: getStatus(STATUS.PENDING), data: prevState[methodName].data, error: prevState[methodName].error},
+				[methodName]: {...prevState[methodName], status: getStatus(STATUS.PENDING)},
 			}));
 
 			try {

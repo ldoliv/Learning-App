@@ -24,7 +24,7 @@ function useDataApi(initialData) {
 
 		let mounted = true;
 
-		async function request(url) {
+		async function request() {
 			setState(state => ({...state, loading: true}));
 			try {
 				const response = await fetch(url);
@@ -43,8 +43,8 @@ function useDataApi(initialData) {
 			}
 		}
 
-		if (mounted && url) {
-			request(url);
+		if (url) {
+			request();
 		}
 
 		return () => {

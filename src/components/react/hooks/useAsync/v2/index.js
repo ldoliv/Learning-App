@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {fetchPokemon} from "../helpers";
-import {useAsync} from "./UseAsync";
+import {useAsync} from "./useAsync";
 
 
 
@@ -72,7 +72,7 @@ const STATUS = {
 
 function TestWithPromise() {
 
-	const [getPokemon] = useAsync(fetchPokemon, {useState: false});
+	const [getPokemon] = useAsync(fetchPokemon, {withState: false});
 	const [response, setResponse] = useState({
 		status: STATUS.IDLE,
 		data: null,

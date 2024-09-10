@@ -67,6 +67,7 @@ export function useAddChildren(children) {
 
 	React.useLayoutEffect(() => {
 		const path = pathname.split('/').pop();
+		// console.log(path);
 		dispatch(routerActions.addChildren({path, children}))
 		return () => {}
 	}, [])

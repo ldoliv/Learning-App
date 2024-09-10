@@ -20,7 +20,8 @@ function getNextPositiveInt(arr: number[] ) {
 			return unique[i - 1] + 1;
 	}
 	// if not found within the sequence return the last number + 1
-	return unique[unique.length - 1] + 1;
+	const last = unique.pop();
+	return (last === undefined || last < 0) ? 1 : last + 1;
 }
 
 

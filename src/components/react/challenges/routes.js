@@ -1,18 +1,29 @@
-
-
 export const routes = [
 	{
-		path: 'hackernoon',
-		label: <>
-			<p>Hackernoon</p>
-		</>,
-		componentFilename: 'hackernoon/Challenges'
+		path: "rcodility",
+		label: (
+			<>
+				<p>Codility</p>
+			</>
+		),
+		componentFilename: "rcodility/Challenges",
 	},
 	{
-		path: 'others',
-		label: <>
-			<p>Others</p>
-		</>,
-		componentFilename: 'others/Challenges'
+		path: "hackernoon",
+		label: (
+			<>
+				<p>Hackernoon</p>
+			</>
+		),
+		componentFilename: "hackernoon/Challenges",
+	},
+	{
+		path: "others",
+		label: (
+			<>
+				<p>Others</p>
+			</>
+		),
+		componentFilename: "others/Challenges",
 	},
 ];
