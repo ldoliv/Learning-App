@@ -11,6 +11,7 @@ export default function Request_5() {
 
 	const [state, request] = useAsync(fetchApi, {
 		delay: 1000,
+		abortRequest: true,
 		// failRate: 0.5
 	});
 

@@ -17,7 +17,7 @@ function getStatus(status) {
 	};
 }
 
-function useAsync(asyncFn = null, options = {}) {
+function useAsync(asyncFn, options = {}) {
 
 	const opts = {
 		withState: true,
@@ -63,11 +63,13 @@ function useAsync(asyncFn = null, options = {}) {
 				let result = null;
 
 				if (opts.abortRequest) {
+					// allows working with axios https://axios-http.com/docs/api_intro
 					if (isObject(args[0])) {
 						args[0].signal = abortController.current.signal;
 						result = await asyncFn(...args);
+					// allows working with both fetch and axios
 					} else {
-						result = await asyncFn(...args, {signal: abortController.current.signal});
+						result = await asyncFn(...[args[0], {...(isObject(args[1]) ? args[1] : {}), signal: abortController.current.signal}]);
 					}
 				} else {
 					result = await asyncFn(...args);
@@ -93,7 +95,8 @@ function useAsync(asyncFn = null, options = {}) {
 				abortController.current = null;
 			}
 		},
-		[asyncFn, opts.delay, opts.failRate, opts.abortRequest, opts.withState]
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[asyncFn, JSON.stringify(opts)]
 	);
 
 	const reset = useCallback(() => {
@@ -138,6 +141,10 @@ function toErrorInstance(e) {
 
 function isObject(value) {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isFunction(variable) {
+	return typeof variable === 'function';
 }
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))

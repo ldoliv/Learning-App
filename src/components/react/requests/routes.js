@@ -18,7 +18,7 @@ export const routes = [
 	{
 		path: 'v3',
 		label: <>
-			<p>v3</p>
+			<p>v3 - Likely to be used without a hook</p>
 		</>,
 		componentFilename: 'v3/Request_3'
 	},
@@ -32,14 +32,14 @@ export const routes = [
 	{
 		path: 'v5',
 		label: <>
-			<p>v5</p>
+			<p>v5 - Likely to be used</p>
 		</>,
 		componentFilename: 'v5/Request_5'
 	},
 	{
 		path: 'v6',
 		label: <>
-			<p>v6</p>
+			<p>v6 - Most likely to be used</p>
 		</>,
 		componentFilename: 'v6/Request_6'
 	},

@@ -5,13 +5,13 @@ import {apiMethods} from './api/api';
 
 export default function Request_6() {
 
-	const [state, getUser] = useAsync(apiMethods().getUser, {
-		delay: 1000,
-		abortRequest: true,
-		// failRate: 0.5
-	});
+	// const [state, getUser] = useAsync(apiMethods().getUser, {
+	// 	delay: 1000,
+	// 	abortRequest: true,
+	// 	// failRate: 0.5
+	// });
 
-	// const [state, getUser] = apiMethods().useGetUser();
+	const [state, getUser] = apiMethods().useGetUser();
 
 	const handleClick = async () => {
 		getUser(1);

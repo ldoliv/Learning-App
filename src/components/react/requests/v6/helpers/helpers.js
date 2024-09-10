@@ -10,6 +10,7 @@ class NetworkError extends Error {
 }
 
 export const fetchApi = async (...args) => {
+	console.log(args);
 	try {
 		const response = await fetch(...args); // can immediately throw an error if the domain is unreachable, in which case it's handled within catch
 		const contentType = response.headers.get('Content-Type');
@@ -24,6 +25,7 @@ export const fetchApi = async (...args) => {
 }
 
 export const axiosApi = async (...args) => {
+	console.log(args);
 	try {
 		const response = await axios(...args);
 		return response.data;
