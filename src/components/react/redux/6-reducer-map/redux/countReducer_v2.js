@@ -17,7 +17,7 @@ const reducerMap = {
 
 
 
-// Option 1, initial state is passed to configureStore when creating the store
+// Option 1, initial state is passed to configureStore in store.js when creating the store
 export const [countActions, countReducer] = createReducerTuple(reducerMap);
 
 

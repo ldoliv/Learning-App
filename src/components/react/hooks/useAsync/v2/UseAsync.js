@@ -67,7 +67,7 @@ function useAsync(asyncFn, options = {}) {
 					if (isObject(args[0])) {
 						args[0].signal = abortController.current.signal;
 						result = await asyncFn(...args);
-					// allows working with both fetch and axios
+						// allows working with both fetch and axios
 					} else {
 						result = await asyncFn(...[args[0], {...(isObject(args[1]) ? args[1] : {}), signal: abortController.current.signal}]);
 					}
@@ -103,12 +103,14 @@ function useAsync(asyncFn, options = {}) {
 		if (abortController.current) {
 			abortController.current.abort('reset, cancelled pending requests');
 		}
-		setState({
-			status: getStatus(STATUS.IDLE),
-			data: null,
-			error: null
-		});
-	}, []);
+		if (opts.withState) {
+			setState({
+				status: getStatus(STATUS.IDLE),
+				data: null,
+				error: null
+			});
+		}
+	}, [opts.withState]);
 
 	return opts.withState ? [state, asyncHOF, reset] : [asyncHOF];
 }
@@ -141,10 +143,6 @@ function toErrorInstance(e) {
 
 function isObject(value) {
 	return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
-function isFunction(variable) {
-	return typeof variable === 'function';
 }
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms))

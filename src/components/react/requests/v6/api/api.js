@@ -1,6 +1,6 @@
 import {useCallback} from 'react';
 import {useAsync} from "components/react/hooks/useAsync/v2/useAsync";
-import {fetchApi, axiosApi, isObject} from "../helpers/helpers";
+import {fetchApi, axiosApi} from "../helpers/helpers";
 
 
 const url = `https://jsonplaceholder.typicode.com/users/`;

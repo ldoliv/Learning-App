@@ -13,8 +13,8 @@ const REQUESTING_DATA = 'REQUESTING_DATA'
 const RECEIVED_DATA = 'RECEIVED_DATA'
 
 // Action creators
-const requestingData = () => {return {type: REQUESTING_DATA}}
-const receivedData = (data) => {return {type: RECEIVED_DATA, users: data.users}}
+const requestingData = () => ({type: REQUESTING_DATA})
+const receivedData = (data) => ({type: RECEIVED_DATA, users: data.users})
 
 
 const handleAsync = () => {

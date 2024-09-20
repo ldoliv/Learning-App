@@ -16,28 +16,11 @@ export default function TestUseAync() {
 
 function TestWithState() {
 
-	const fetchPokemonWrapper = useCallback((...args) => {
-		// console.log(args);
-		if (args.length === 2) {
-			return fetchPokemon(args[0], {
-				signal: args[1],
-			})
-		} else if (args.length === 3) {
-			return fetchPokemon(args[0], {
-				...args[1],
-				signal: args[2],
-			})
-		}
-	}, []);
-
-	const [getPokemonR, getPokemon] = useAsync(fetchPokemonWrapper);
-	// const [getPokemonR, getPokemon] = useAsync(fetchPokemon);
+	const [getPokemonR, getPokemon] = useAsync(fetchPokemon, {abortRequest: true, delay: 1000});
 
 	function handleClick() {
-		getPokemon('pikachu', {
-			delay: 1000
-		})
-		// getPokemon('pikachu')
+		// getPokemon('pikachu', {})
+		getPokemon('pikachu')
 	}
 
 	useEffect(() => {
@@ -62,6 +45,8 @@ function TestWithState() {
 		</div>
 	)
 }
+
+// ---------------------------------------------------------------------------------------
 
 const STATUS = {
 	IDLE: 'IDLE',
